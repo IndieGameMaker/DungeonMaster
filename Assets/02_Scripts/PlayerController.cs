@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // 객체가 로딩(생성) 될 때 한번 호출
+    // 스크립트가 비활성화 되어도 실행된다.
     void Awake()
     {
         // 전역 게임 데이터 초기화
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // 호출 주기는 물리엔진의 계산 주기
     void FixedUpdate()
     {
-        
+        Debug.Log($"호출 간격 : {Time.fixedDeltaTime}");
     }
 
     void LateUpdate()
