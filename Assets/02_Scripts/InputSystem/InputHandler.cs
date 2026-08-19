@@ -70,12 +70,14 @@ namespace DungeonMaster.InputSystem
         #region 콜백 메서드
         private void OnMove(InputAction.CallbackContext ctx)
         {
-            Debug.Log($"Move: {ctx.ReadValue<Vector2>()}");
+            //Debug.Log($"Move: {ctx.ReadValue<Vector2>()}");
+            OnMoveAction?.Invoke(ctx.ReadValue<Vector2>());
         }
         
         private void OnAttack(InputAction.CallbackContext ctx)
         {
-            Debug.Log($"Attack: 공격");
+            // Debug.Log($"Attack: 공격");
+            OnAttackAction?.Invoke();
         }      
         
         private void OnInteract(InputAction.CallbackContext ctx)
@@ -83,10 +85,12 @@ namespace DungeonMaster.InputSystem
             if (ctx.phase == InputActionPhase.Performed)
             {
                 Debug.Log("상호작용 시작");
+                OnInteractAction?.Invoke(true);
             }
             else if (ctx.phase == InputActionPhase.Canceled)
             {
                 Debug.Log("상호작용 종료");
+                OnInteractAction?.Invoke(false);
             }
         }        
         #endregion
