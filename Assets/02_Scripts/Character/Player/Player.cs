@@ -7,7 +7,7 @@ namespace DungeonMaster.Character.Player
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(InputHandler))]
-    public abstract class Player : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         #region 기본 스텟
 
@@ -57,6 +57,38 @@ namespace DungeonMaster.Character.Player
             //weaponArm = this.gameObject.GetComponent<Transform>().Find("Arm");
             // GameObject.Find  => Root 에서 처음부터 재귀적으로 검색
             // Transform.Find   => 해당 Transform 의 위치에서 부터 재귀적으로 검색
+        }
+
+        protected void OnEnable()
+        {
+            _inputHandler.OnMoveAction += OnMove;
+            _inputHandler.OnAttackAction += OnAttack;
+            _inputHandler.OnInteractAction += OnInteract;
+        }
+        
+        protected void OnDisable()
+        {
+            _inputHandler.OnMoveAction -= OnMove;
+            _inputHandler.OnAttackAction -= OnAttack;
+            _inputHandler.OnInteractAction -= OnInteract;
+        }
+        #endregion
+
+        #region 입력 처리 메서드
+
+        private void OnMove(Vector2 ctx)
+        {
+            Debug.Log($"이동: {ctx}");
+        }
+
+        private void OnAttack()
+        {
+            
+        }
+
+        private void OnInteract(bool obj)
+        {
+            
         }
         #endregion
     }
