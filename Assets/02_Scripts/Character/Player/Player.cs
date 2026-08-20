@@ -37,7 +37,10 @@ namespace DungeonMaster.Character.Player
         #endregion
         
         // Facing 처리를 위한 Weapon Arm
-        protected Transform weaponArm;
+        protected Transform _weaponArm;
+        
+        // 애니메이터 파라메터 해시(Hash)값 미리 추출
+        protected static readonly int hashIsWalk = Animator.StringToHash("IsWalk");
 
         #region 유니티 생명주기 메서드
 
@@ -52,7 +55,7 @@ namespace DungeonMaster.Character.Player
             _inputHandler = GetComponent<InputHandler>();
             
             // weaponArm 설정
-            weaponArm = transform.Find("Arm");
+            _weaponArm = transform.Find("Arm");
             
             //weaponArm = this.gameObject.GetComponent<Transform>().Find("Arm");
             // GameObject.Find  => Root 에서 처음부터 재귀적으로 검색
@@ -74,11 +77,47 @@ namespace DungeonMaster.Character.Player
         }
         #endregion
 
+        #region 공통 메서드
+        // Facing 처리
+        private void FlipDirection(bool facingRight)
+        {
+            if (facingRight)
+            {
+                // 오른쪽 방향
+                _spriteRenderer.flipX = false;
+                _weaponArm.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else
+            {
+                // 왼쪽 방향
+                _spriteRenderer.flipX = true;
+                _weaponArm.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+        }
+        #endregion
+        
         #region 입력 처리 메서드
 
+        /* 벡터의 정규화 (Normalize)
+         *
+         * a + b = c
+         * c.normalized
+         */
+        
         private void OnMove(Vector2 ctx)
         {
-            Debug.Log($"이동: {ctx}");
+            Debug.Log($"이동: {ctx} , 벡터 크기: {ctx.magnitude}");
+
+            if (_isDead) return;
+            // 이동 처리
+            _rb.linearVelocity = ctx * _moveSpeed;
+            // 방향 전환
+            if (ctx.x != 0)
+            {
+                FlipDirection(ctx.x > 0);
+            }
+            // 애니메이션 처리
+            _animator.SetBool(hashIsWalk, ctx.sqrMagnitude > 0f);
         }
 
         private void OnAttack()
