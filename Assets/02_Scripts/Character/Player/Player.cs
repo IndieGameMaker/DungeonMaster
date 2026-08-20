@@ -41,6 +41,8 @@ namespace DungeonMaster.Character.Player
         
         // 애니메이터 파라메터 해시(Hash)값 미리 추출
         protected static readonly int hashIsWalk = Animator.StringToHash("IsWalk");
+        protected static readonly int hashAttack = Animator.StringToHash("Attack");
+        protected static readonly int hashHit = Animator.StringToHash("Hit");
 
         #region 유니티 생명주기 메서드
 
@@ -122,7 +124,7 @@ namespace DungeonMaster.Character.Player
 
         private void OnAttack()
         {
-            
+            _animator.SetTrigger(hashAttack);
         }
 
         private void OnInteract(bool obj)
