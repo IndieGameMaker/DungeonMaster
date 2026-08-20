@@ -12,7 +12,7 @@ namespace DungeonMaster.InputSystem
         // 액션을 참조할 변수
         private InputAction _moveAction;
         private InputAction _attackAction;
-        private InputAction _interactAction;
+        private InputAction _interactAction;  
 
         // 이벤트 선언
         public static event Action<Vector2> OnMoveAction;
