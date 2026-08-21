@@ -7,7 +7,7 @@ namespace DungeonMaster.Character.Player
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(InputHandler))]
-    public class Player : MonoBehaviour
+    public abstract class Player : MonoBehaviour
     {
         #region 기본 스텟
 
@@ -108,9 +108,9 @@ namespace DungeonMaster.Character.Player
         
         private void OnMove(Vector2 ctx)
         {
-            Debug.Log($"이동: {ctx} , 벡터 크기: {ctx.magnitude}");
-
+            // Debug.Log($"이동: {ctx} , 벡터 크기: {ctx.magnitude}");
             if (_isDead) return;
+            
             // 이동 처리
             _rb.linearVelocity = ctx * _moveSpeed;
             // 방향 전환
@@ -124,13 +124,21 @@ namespace DungeonMaster.Character.Player
 
         private void OnAttack()
         {
+            if (_isDead) return;
+            
             _animator.SetTrigger(hashAttack);
+            Attack();
         }
 
-        private void OnInteract(bool obj)
+        private void OnInteract(bool ctx)
         {
-            
+            if (_isDead) return;
+            Debug.Log($"상호작용: {ctx}");
         }
+        #endregion
+
+        #region 추상 메서드
+        protected abstract void Attack();
         #endregion
     }
 }
