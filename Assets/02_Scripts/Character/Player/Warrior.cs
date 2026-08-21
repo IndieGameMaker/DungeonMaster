@@ -1,9 +1,12 @@
 using UnityEngine;
 
-namespace DungeonMaster.Character
+namespace DungeonMaster.Character.Player
 {
-    public class Warrior : MonoBehaviour
+    public class Warrior : Player
     {
-    
+        protected override void Attack()
+        {
+            Debug.Log("공격 실행");
+        }
     }
 }

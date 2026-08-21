@@ -1,3 +1,4 @@
+using DungeonMaster.Core;
 using UnityEngine;
 using DungeonMaster.InputSystem;
 
@@ -7,7 +8,7 @@ namespace DungeonMaster.Character.Player
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(InputHandler))]
-    public abstract class Player : MonoBehaviour
+    public abstract class Player : MonoBehaviour, IDamageable
     {
         #region 기본 스텟
 
@@ -140,5 +141,23 @@ namespace DungeonMaster.Character.Player
         #region 추상 메서드
         protected abstract void Attack();
         #endregion
+
+        public virtual void TakeDamage(float damage)
+        {
+            if (_isDead) return;
+            _currHp -= damage;
+            _animator.SetTrigger(hashHit);
+
+            if (_currHp <= 0f)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
+        {
+            _currHp = 0;
+            Debug.Log("주인공이 사망했습니다.");
+        }
     }
 }
