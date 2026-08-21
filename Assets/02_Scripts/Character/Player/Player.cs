@@ -45,6 +45,9 @@ namespace DungeonMaster.Character.Player
         protected static readonly int hashAttack = Animator.StringToHash("Attack");
         protected static readonly int hashHit = Animator.StringToHash("Hit");
 
+        // 마지막 공격 시간 기록 
+        private float lastAttackTime = 0f;
+        
         #region 유니티 생명주기 메서드
 
         protected virtual void Awake()
@@ -127,8 +130,13 @@ namespace DungeonMaster.Character.Player
         {
             if (_isDead) return;
             
-            _animator.SetTrigger(hashAttack);
-            Attack();
+            // 공격 쿨다운 체크
+            if (Time.time >= lastAttackTime + _attackCooldown)
+            {
+                lastAttackTime = Time.time;
+                _animator.SetTrigger(hashAttack);
+                Attack();
+            }
         }
 
         private void OnInteract(bool ctx)
