@@ -21,10 +21,19 @@ namespace DungeonMaster.Character.Player
         }
 
         #endregion
+
+        #region 공격 및 데미지 처리
         
         protected override void Attack()
         {
             Debug.Log("공격 실행");
+        }
+        
+        // 애니메이션 이벤트에서 호출할 메서드
+        public void OnAttackAnimEvent()
+        {
+            // TODO: 실제 공격 처리 로직
+            Debug.Log("전사 공격 타이밍!!!");
         }
 
         public override void TakeDamage(float damage)
@@ -35,5 +44,6 @@ namespace DungeonMaster.Character.Player
             base.TakeDamage(actualDamage);
             Debug.Log($"Warrior가 {actualDamage}의 피해를 입었습니다. HP : {_currHp}/{_maxHp}");
         }
+        #endregion
     }
 }
