@@ -40,16 +40,19 @@ namespace DungeonMaster.Character.Enemy
 
         protected void Awake()
         {
-            // 상태머신 초기화
-            _stateMachine = new StateMachine(this);
-            
-            // 초기 상태 설정(IdleState)
-            ChangeState<IdleState>();
-            
             // 상태 초기화 호출
             InitStates();
             // 컴포넌트 초기화
             InitComponents();
+        }
+
+        protected void Start()
+        {
+            // 상태머신 초기화                             
+            _stateMachine = new StateMachine(this); 
+                                        
+            // 초기 상태 설정(IdleState)                  
+            ChangeState<IdleState>();                       
         }
 
         private void Update()
