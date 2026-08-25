@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using DungeonMaster.Character.Enemy.FSM;
 using UnityEngine.InputSystem;
 
 namespace DungeonMaster.Character.Enemy
 {
-    public class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour
     {
         // 상태 머신 변수 선언
         protected StateMachine _stateMachine;
@@ -16,6 +17,12 @@ namespace DungeonMaster.Character.Enemy
             _stateMachine.ChangeState(newState);
         }
 
+        // 상태를 저장할 딕셔너리 선언
+        protected Dictionary<Type, IState> _states;
+        
+        // 상태를 초기화 시키는 추상 메서드
+        protected abstract void InitStates();
+        
         #region 유니티 생명주기
 
         protected void Awake()
@@ -25,6 +32,9 @@ namespace DungeonMaster.Character.Enemy
             
             // 초기 상태 설정(IdleState)
             ChangeState(new IdleState());
+            
+            // 상태 초기화 호출
+            InitStates();
         }
 
         private void Update()
