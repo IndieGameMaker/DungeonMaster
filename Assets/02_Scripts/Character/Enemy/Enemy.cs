@@ -20,6 +20,11 @@ namespace DungeonMaster.Character.Enemy
                 _stateMachine.ChangeState(state);
             }
         }
+        
+        // 상태 머신 프로퍼티
+        public StateMachine StateMachine => _stateMachine;
+        // 현재 상태 표기
+        public string CurrentStateName => StateMachine?._currentState?.GetType().Name ?? "None";
 
         // 상태를 저장할 딕셔너리 선언
         protected Dictionary<Type, IState> _states;
@@ -59,8 +64,6 @@ namespace DungeonMaster.Character.Enemy
         {
             // 상태 머신 업데이트
             _stateMachine.Update();
-            
-            TestFSM();
         }
         #endregion
 

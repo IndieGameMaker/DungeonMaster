@@ -16,6 +16,10 @@ public class EnemyEditor : Editor
         EditorGUILayout.Space();
         GUI.enabled = Application.isPlaying;
         
+        // 현재 상태 표시 레이블
+        EditorGUILayout.LabelField("현재 상태", enemy.CurrentStateName);
+        
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Idle 상태"))
         {
             enemy.ChangeState<IdleState>();
@@ -28,6 +32,8 @@ public class EnemyEditor : Editor
         {
             enemy.ChangeState<AttackState>();
         }
+        GUILayout.EndHorizontal();
+        
         // 주의사항 true 전환
         GUI.enabled = true;
     }

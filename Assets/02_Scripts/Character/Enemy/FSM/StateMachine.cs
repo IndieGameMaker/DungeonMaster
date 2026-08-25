@@ -11,7 +11,7 @@ namespace DungeonMaster.Character.Enemy.FSM
         }
         
         // 현재 상태를 저장하는 변수
-        protected IState _currentState;
+        public IState _currentState;
         
         // 상태를 전환하는 메서드
         public void ChangeState(IState newState)
