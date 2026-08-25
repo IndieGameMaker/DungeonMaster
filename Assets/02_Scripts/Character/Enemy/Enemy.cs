@@ -111,6 +111,16 @@ namespace DungeonMaster.Character.Enemy
             return false;
         }
         #endregion
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, _enemySO.chaseDistance);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _enemySO.attackDistance);
+        }
+        
         
         #region 테스트 코드
         private void TestFSM()
