@@ -14,6 +14,10 @@ namespace DungeonMaster.Character.Enemy.FSM
         {
             Debug.Log("Idle 갱신");
             // 플레이어와의 거리를 측정하고 추적사정거리 이내이면 ChaseState로 변경
+            if (enemy.DetectPlayer())
+            {
+                Debug.Log("플레이어 검출");
+            }
         }
 
         public void OnExit(Enemy enemy)

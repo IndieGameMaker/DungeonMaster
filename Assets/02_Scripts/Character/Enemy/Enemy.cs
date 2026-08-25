@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using DungeonMaster.Character.Enemy.FSM;
 using UnityEngine.InputSystem;
@@ -8,18 +9,14 @@ namespace DungeonMaster.Character.Enemy
 {
     public abstract class Enemy : MonoBehaviour
     {
+        [Header("기본 스텟")] 
+        [SerializeField] protected EnemySO _enemySO;
+
+        [Header("주인공 레이어 마스크")]
+        [SerializeField] protected LayerMask _playerMask;
+        
         // 상태 머신 변수 선언
         protected StateMachine _stateMachine;
-        
-        // 상태 전환 헬퍼 메서드 
-        public void ChangeState<T>() where T : IState
-        {
-            // 딕셔너리에서 저장된 상태(State)를 가져와서 전환
-            if (_states.TryGetValue(typeof(T), out IState state))
-            {
-                _stateMachine.ChangeState(state);
-            }
-        }
         
         // 상태 머신 프로퍼티
         public StateMachine StateMachine => _stateMachine;
@@ -78,6 +75,43 @@ namespace DungeonMaster.Character.Enemy
 
         #endregion
 
+        #region 상태 관련 메서드
+        // 상태 전환 헬퍼 메서드 
+        public void ChangeState<T>() where T : IState
+        {
+            // 딕셔너리에서 저장된 상태(State)를 가져와서 전환
+            if (_states.TryGetValue(typeof(T), out IState state))
+            {
+                _stateMachine.ChangeState(state);
+            }
+        }
+        
+        // 가장 가까이 있는 주인공을 검출
+        public Transform target;
+        public bool DetectPlayer()
+        {
+            // (원점, 반지름, 레이어마스크)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _enemySO.chaseDistance, _playerMask);
+            
+            // 가장 가까운 플레이어 검출
+            // LINQ (SQL Select, From, Where, OrderBy, Having, Join, ...)
+            if (colliders.Length > 0)
+            {
+                // A, B  Vector2.Distance(A, B)
+                // A, B  (A - B).magnitude
+                // A, B  (A - B).sqrMagnitude
+                target = colliders
+                    .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
+                    .First()
+                    .transform;
+                return target != null;
+            }
+
+            target = null;
+            return false;
+        }
+        #endregion
+        
         #region 테스트 코드
         private void TestFSM()
         {
