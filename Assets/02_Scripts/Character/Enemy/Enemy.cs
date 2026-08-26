@@ -59,7 +59,7 @@ namespace DungeonMaster.Character.Enemy
             InitComponents();
         }
 
-        protected void Start()
+        protected virtual void Start()
         {
             // 상태머신 초기화                             
             _stateMachine = new StateMachine(this); 
