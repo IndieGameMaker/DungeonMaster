@@ -38,6 +38,10 @@ namespace DungeonMaster.Character.Enemy
         protected static readonly int hashIsWalk = Animator.StringToHash("IsWalk");
         protected static readonly int hashHit = Animator.StringToHash("Hit");
         
+        // 애니메이션 설정 메서드
+        public void SetWalk(bool isWalk) => _animator.SetBool(hashIsWalk, isWalk);
+        public void SetHit() => _animator.SetTrigger(hashHit);
+        
         // 가장 가까이 있는 주인공을 검출
         public Transform target;
         

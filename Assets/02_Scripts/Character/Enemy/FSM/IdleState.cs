@@ -6,17 +6,15 @@ namespace DungeonMaster.Character.Enemy.FSM
     {
         public void OnEnter(Enemy enemy)
         {
-            Debug.Log("Idle 진입");
             // 애니메이션을 Idle 변경
+            enemy.SetWalk(false);
         }
 
         public void OnUpdate(Enemy enemy)
         {
-            Debug.Log("Idle 갱신");
             // 플레이어와의 거리를 측정하고 추적사정거리 이내이면 ChaseState로 변경
             if (enemy.DetectPlayer())
             {
-                Debug.Log("플레이어 검출");
                 // 추적 상태로 전환
                 enemy.ChangeState<ChaseState>();
             }

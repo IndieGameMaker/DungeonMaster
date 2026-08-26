@@ -6,8 +6,8 @@ namespace DungeonMaster.Character.Enemy.FSM
     {
         public void OnEnter(Enemy enemy)
         {
-            Debug.Log("Chase 진입");
             // 애니메이션을 Chase 변경
+            enemy.SetWalk(true);
         }
 
         public void OnUpdate(Enemy enemy)
@@ -23,7 +23,6 @@ namespace DungeonMaster.Character.Enemy.FSM
 
         public void OnExit(Enemy enemy)
         {
-            Debug.Log("Chase 종료");
         }
     }
 }
