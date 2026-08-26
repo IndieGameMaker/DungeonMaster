@@ -15,6 +15,10 @@ namespace DungeonMaster.Character.Enemy
         [Header("주인공 레이어 마스크")]
         [SerializeField] protected LayerMask _playerMask;
         
+        [Header("주인공 검출 빈도")]
+        [SerializeField] private float _detectInterval = 0.3f;
+        private float _lastDetectTime;
+        
         // 상태 머신 변수 선언
         protected StateMachine _stateMachine;
         
@@ -92,8 +96,20 @@ namespace DungeonMaster.Character.Enemy
                 _stateMachine.ChangeState(state);
             }
         }
-        
+        #endregion
 
+        #region 추적 관련 메서드
+        // 주인공 검출 시간이 지났는지 확인
+        public bool PlayerDetectable()
+        {
+            if (Time.time >= _lastDetectTime + _detectInterval)
+            {
+                _lastDetectTime = Time.time;
+                return true;
+            }
+            return false;
+        }
+        
         public bool DetectPlayer()
         {
             // (원점, 반지름, 레이어마스크)
@@ -118,6 +134,7 @@ namespace DungeonMaster.Character.Enemy
         }
         #endregion
 
+        #region Gizmos
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
@@ -126,6 +143,7 @@ namespace DungeonMaster.Character.Enemy
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _enemySO.attackDistance);
         }
+        #endregion 
         
         
         #region 테스트 코드

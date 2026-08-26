@@ -13,7 +13,7 @@ namespace DungeonMaster.Character.Enemy.FSM
         public void OnUpdate(Enemy enemy)
         {
             // 플레이어와의 거리를 측정하고 추적사정거리 이내이면 ChaseState로 변경
-            if (enemy.DetectPlayer())
+            if (enemy.PlayerDetectable() && enemy.DetectPlayer())
             {
                 // 추적 상태로 전환
                 enemy.ChangeState<ChaseState>();
