@@ -142,7 +142,14 @@ namespace DungeonMaster.Character.Enemy
             Vector2 direction = (target.position - transform.position).normalized;
             // Target의 위치에 따라서 스프라이트의 FlipX 속성을 변경
             _spriteRenderer.flipX = direction.x < 0;
+            // 실제 이동처리
             _rb.linearVelocity = direction * _enemySO.moveSpeed;
+        }
+        
+        // 추적 정지
+        public void StopMoving()
+        {
+            _rb.linearVelocity = Vector2.zero;
         }
         #endregion
 

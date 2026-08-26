@@ -8,6 +8,8 @@ namespace DungeonMaster.Character.Enemy.FSM
         {
             // 애니메이션을 Idle 변경
             enemy.SetWalk(false);
+            // Idle 상태는 반드시 정지 상태이어야 만 한다.
+            enemy.StopMoving();
         }
 
         public void OnUpdate(Enemy enemy)
