@@ -47,7 +47,7 @@ namespace DungeonMaster.Character.Enemy
         public void SetHit() => _animator.SetTrigger(hashHit);
         
         // 가장 가까이 있는 주인공을 검출
-        public Transform target;
+        protected Transform target;
         
         #region 유니티 생명주기
 

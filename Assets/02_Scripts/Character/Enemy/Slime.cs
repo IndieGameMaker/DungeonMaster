@@ -9,6 +9,19 @@ namespace DungeonMaster.Character.Enemy
 {
     public class Slime : Enemy
     {
+        [Header("슬라임 공격 스텟")] 
+        [SerializeField] private float _dashSpeed = 10f;
+        [SerializeField] private float _returnSpeed = 8f;
+        [SerializeField] private float _dashDistance = 0.5f;
+        [SerializeField] private float _waitingTime = 0.2f;
+        
+        // 슬라임 공격 시작위치 저장(원래 위치)
+        private Vector2 originPosition;
+        // 공격 여부
+        private bool _isAttacking = false;
+        // 마지막 공격 시간 기록
+        public float LastAttackTime {get; private set;} 
+        
         protected override void InitStates()
         {
             _states = new Dictionary<Type, IState>
@@ -26,40 +39,37 @@ namespace DungeonMaster.Character.Enemy
         {
             base.Start();
 
-            StartCoroutine(ExampleCoroutine());
-            // StartCoroutine("ExampleCoroutine");
-            // StartCoroutine(nameof(ExampleCoroutine));
         }
 
-        public bool respawned = false;
-        
-        // 코루틴 정의
-        private IEnumerator ExampleCoroutine()
+        #region 공격 메서드
+
+        public IEnumerator DashAttack()
         {
-            Debug.Log("코루틴 시작");
-            
-            // Thread.Sleep(3500); // Block
-            // yield return null;  // 다음 프레임까지 양보
-            // yield return new WaitForSeconds(3.5f);  // 지정한 시간(초)동안 메인 메시지루프에게 제어권을 양보
+            _isAttacking = true;
 
-            yield return new WaitUntil(() => respawned == true);  // ~ 일때까지 제어권 양보
+            // 마지막 공격 시간을 갱신
+            LastAttackTime = Time.time;
+            // 현재 위치 저장
+            originPosition = transform.position;
             
-            // yield return new WaitWhile(() => !respawned); // ~ 하는 동안 계속 제어권 양보
-
-            // yield return StartCoroutine(다른 코루틴); // 다른 코루틴이 완료될 때까지 제어권을 양보
+            // 목표 좌표 계산
+            // 현재 위치 Vector2
+            Vector2 currPosition = new Vector2(transform.position.x, transform.position.y);
+            // 공격 방향 벡터를 계산 (벡터의 뺄셈 연산)
+            Vector2 dashDir = (target.position - transform.position).normalized;
+            // 공격할 좌표를 계산
+            Vector2 dashTarget = currPosition + dashDir * _dashDistance;
             
-            Debug.Log("코루틴 종료");
+            // while : 대시 처리 (앞으로 점진적으로 이동)
+            
+            // 잠시 대기
+            
+            // while : 원위치로 복귀
+            
+            _isAttacking = false;
         }
-        
-        public bool isDead = false;
 
-        private IEnumerator DeadCoroutine()
-        {
-            while (!isDead)
-            {
-                // 로직 처리
-                yield return null; 
-            }
-        }
+        #endregion
+
     }
 }
