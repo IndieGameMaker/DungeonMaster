@@ -17,6 +17,8 @@ namespace DungeonMaster.Character.Enemy.FSM
             if (enemy.DetectPlayer())
             {
                 Debug.Log("플레이어 검출");
+                // 추적 상태로 전환
+                enemy.ChangeState<ChaseState>();
             }
         }
 

@@ -38,6 +38,9 @@ namespace DungeonMaster.Character.Enemy
         protected static readonly int hashIsWalk = Animator.StringToHash("IsWalk");
         protected static readonly int hashHit = Animator.StringToHash("Hit");
         
+        // 가장 가까이 있는 주인공을 검출
+        public Transform target;
+        
         #region 유니티 생명주기
 
         protected void Awake()
@@ -86,15 +89,14 @@ namespace DungeonMaster.Character.Enemy
             }
         }
         
-        // 가장 가까이 있는 주인공을 검출
-        public Transform target;
+
         public bool DetectPlayer()
         {
             // (원점, 반지름, 레이어마스크)
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _enemySO.chaseDistance, _playerMask);
             
             // 가장 가까운 플레이어 검출
-            // LINQ (SQL Select, From, Where, OrderBy, Having, Join, ...)
+            // LINQ (SQL Select, Where, OrderBy, Having, Join, ...)
             if (colliders.Length > 0)
             {
                 // A, B  Vector2.Distance(A, B)
