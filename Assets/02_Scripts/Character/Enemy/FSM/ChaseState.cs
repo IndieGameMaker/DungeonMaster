@@ -14,8 +14,11 @@ namespace DungeonMaster.Character.Enemy.FSM
         {
             if (enemy.PlayerDetectable())
             {
-                // 거리가 멀어지면 다시 IdleState 로 전환
-                if (!enemy.DetectPlayer())
+                if (enemy.DetectPlayer())
+                {
+                    Debug.Log($"플레이어 검출 : {Time.time}");
+                }
+                else
                 {
                     enemy.ChangeState<IdleState>();
                 }
