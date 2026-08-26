@@ -16,7 +16,8 @@ namespace DungeonMaster.Character.Enemy.FSM
             {
                 if (enemy.DetectPlayer())
                 {
-                    Debug.Log($"플레이어 검출 : {Time.time}");
+                    // Debug.Log($"플레이어 검출 : {Time.time}");
+                    enemy.MoveToPlayer();
                 }
                 else
                 {
