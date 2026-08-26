@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using DungeonMaster.Character.Enemy.FSM;
 using UnityEngine;
 
@@ -34,7 +35,9 @@ namespace DungeonMaster.Character.Enemy
         private IEnumerator ExampleCoroutine()
         {
             Debug.Log("코루틴 시작");
-            yield return null;  // 다음 프레임까지 양보
+            // Thread.Sleep(3500); // Block
+            // yield return null;  // 다음 프레임까지 양보
+            yield return new WaitForSeconds(3.5f);  // 지정한 시간(초)동안 메인 메시지루프에게 제어권을 양보
             Debug.Log("코루틴 종료");
         }
     }
