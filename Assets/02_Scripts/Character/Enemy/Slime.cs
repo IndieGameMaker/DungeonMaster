@@ -42,9 +42,24 @@ namespace DungeonMaster.Character.Enemy
             // yield return null;  // 다음 프레임까지 양보
             // yield return new WaitForSeconds(3.5f);  // 지정한 시간(초)동안 메인 메시지루프에게 제어권을 양보
 
-            yield return new WaitUntil(() => respawned == true);
+            yield return new WaitUntil(() => respawned == true);  // ~ 일때까지 제어권 양보
+            
+            // yield return new WaitWhile(() => !respawned); // ~ 하는 동안 계속 제어권 양보
+
+            // yield return StartCoroutine(다른 코루틴); // 다른 코루틴이 완료될 때까지 제어권을 양보
             
             Debug.Log("코루틴 종료");
+        }
+        
+        public bool isDead = false;
+
+        private IEnumerator DeadCoroutine()
+        {
+            while (!isDead)
+            {
+                // 로직 처리
+                yield return null; 
+            }
         }
     }
 }
