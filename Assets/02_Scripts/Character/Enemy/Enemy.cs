@@ -132,6 +132,18 @@ namespace DungeonMaster.Character.Enemy
             target = null;
             return false;
         }
+        
+        // 추적 처리
+        public void MoveToPlayer()
+        {
+            if (target == null) return;
+            
+            // 이동 방향 계산 (플레이어 위치 - 적 위치).normalized 정규화 (벡터의 크기를 1로 설정한다)
+            Vector2 direction = (target.position - transform.position).normalized;
+            // Target의 위치에 따라서 스프라이트의 FlipX 속성을 변경
+            _spriteRenderer.flipX = direction.x < 0;
+            _rb.linearVelocity = direction * _enemySO.moveSpeed;
+        }
         #endregion
 
         #region Gizmos
