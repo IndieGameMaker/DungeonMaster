@@ -171,6 +171,14 @@ namespace DungeonMaster.Character.Enemy
             }
             return false;
         }
+        
+        // 공격 사정거리 이내에 플레이어 존재 여부를 확인하는 메서드
+        public bool IsPlayerAttackRange()
+        {
+            float attackRange = (target.position - transform.position).sqrMagnitude;
+
+            return (attackRange <= _enemySO.attackDistance * _enemySO.attackDistance); // Mathf.Pow()
+        }
         #endregion
 
         #region Gizmos

@@ -17,9 +17,9 @@ namespace DungeonMaster.Character.Enemy.FSM
                 if (enemy.DetectPlayer())
                 {
                     // 공격 범위 내에 플레이어가 있는지 확인
-                    float attackRange = Vector2.Distance(enemy.target.position, enemy.transform.position);
+                    // float attackRange = Vector2.Distance(enemy.target.position, enemy.transform.position);
 
-                    if (attackRange <= enemy.EnemySO.attackDistance)
+                    if (enemy.IsPlayerAttackRange())
                     {
                         // 공격 쿨타임 확인, 공격이 가능할 때만 AttackState 전환
                         if (enemy is Slime slime && !slime.CanAttack(slime.LastAttackTime)) return;

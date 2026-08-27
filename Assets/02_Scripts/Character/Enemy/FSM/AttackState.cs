@@ -10,16 +10,23 @@ namespace DungeonMaster.Character.Enemy.FSM
             
             enemy.StopMoving();
             
+
+        }
+
+        public void OnUpdate(Enemy enemy)
+        {
+            // 공격 범위 밖에 있을 경우 추적 상태로 전환
+            if (!enemy.IsPlayerAttackRange())
+            {
+                enemy.ChangeState<ChaseState>();
+                return;
+            }
+            
             // 대시 공격은 슬라임 전용
             if (enemy is Slime slime && enemy.CanAttack(slime.LastAttackTime))
             {
                 enemy.StartCoroutine(slime.DashAttack());
             }
-        }
-
-        public void OnUpdate(Enemy enemy)
-        {
-            Debug.Log("Attack 갱신");
         }
 
         public void OnExit(Enemy enemy)

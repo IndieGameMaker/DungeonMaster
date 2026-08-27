@@ -89,9 +89,6 @@ namespace DungeonMaster.Character.Enemy
             }
             
             _isAttacking = false;
-            
-            // TODO: 추후 삭제 - 테스트용
-            ChangeState<ChaseState>();
         }
 
         #endregion
