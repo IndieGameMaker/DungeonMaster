@@ -74,9 +74,19 @@ namespace DungeonMaster.Character.Enemy
             }
 
             // 잠시 대기
-            
+            yield return new WaitForSeconds(_waitingTime);
             
             // while : 원위치로 복귀
+            float returnTime = 0f;
+            float returnDistance = Vector2.Distance(transform.position, originPosition);
+            float returnDuration = returnDistance / _returnSpeed;
+
+            while (returnTime < returnDuration)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, originPosition, Time.deltaTime * _returnSpeed);
+                returnTime += Time.deltaTime;
+                yield return null;
+            }
             
             _isAttacking = false;
         }

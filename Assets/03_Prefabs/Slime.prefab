@@ -198,7 +198,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _detectInterval: 0.3
+  target: {fileID: 0}
   _dashSpeed: 10
   _returnSpeed: 8
-  _dashDistance: 0.5
+  _dashDistance: 1
   _waitingTime: 0.2
