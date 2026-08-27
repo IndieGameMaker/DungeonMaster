@@ -161,6 +161,16 @@ namespace DungeonMaster.Character.Enemy
         {
             _rb.linearVelocity = Vector2.zero;
         }
+        
+        // 공격 쿨타임이 지났는 여부를 확인하는 메서드
+        public bool CanAttack(float lastAttackTime)
+        {
+            if (Time.time > lastAttackTime + _enemySO.attackCooldown)
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
 
         #region Gizmos

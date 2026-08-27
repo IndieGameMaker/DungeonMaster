@@ -21,6 +21,9 @@ namespace DungeonMaster.Character.Enemy.FSM
 
                     if (attackRange <= enemy.EnemySO.attackDistance)
                     {
+                        // 공격 쿨타임 확인, 공격이 가능할 때만 AttackState 전환
+                        if (enemy is Slime slime && !slime.CanAttack(slime.LastAttackTime)) return;
+                        
                         // 공격 상태로 전환
                         enemy.ChangeState<AttackState>();
                         return;

@@ -11,7 +11,7 @@ namespace DungeonMaster.Character.Enemy.FSM
             enemy.StopMoving();
             
             // 대시 공격은 슬라임 전용
-            if (enemy is Slime slime)
+            if (enemy is Slime slime && enemy.CanAttack(slime.LastAttackTime))
             {
                 enemy.StartCoroutine(slime.DashAttack());
             }
