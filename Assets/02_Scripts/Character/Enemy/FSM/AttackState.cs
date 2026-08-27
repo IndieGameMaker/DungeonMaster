@@ -6,11 +6,7 @@ namespace DungeonMaster.Character.Enemy.FSM
     {
         public void OnEnter(Enemy enemy)
         {
-            Debug.Log("Attack 진입");
-            
             enemy.StopMoving();
-            
-
         }
 
         public void OnUpdate(Enemy enemy)
@@ -31,7 +27,7 @@ namespace DungeonMaster.Character.Enemy.FSM
 
         public void OnExit(Enemy enemy)
         {
-            Debug.Log("Attack 종료");
+
         }
     }
 }

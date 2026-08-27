@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using DungeonMaster.Character.Enemy.FSM;
+using DungeonMaster.Core;
 using UnityEngine;
 
 namespace DungeonMaster.Character.Enemy
@@ -91,6 +92,19 @@ namespace DungeonMaster.Character.Enemy
             _isAttacking = false;
         }
 
+        #endregion
+
+        #region 충돌감지 로직
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log($"충돌 콜백 호출 : {other.gameObject.name}");
+            
+            if (other.CompareTag("PLAYER"))
+            {
+               other.GetComponent<IDamageable>()?.TakeDamage(_enemySO.attackDamage);                 
+            }
+        }
         #endregion
 
     }

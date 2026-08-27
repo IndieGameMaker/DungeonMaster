@@ -24,7 +24,7 @@ namespace DungeonMaster.Character.Enemy.FSM
 
         public void OnExit(Enemy enemy)
         {
-            Debug.Log("Idle 종료");
+            
         }
     }
 }
