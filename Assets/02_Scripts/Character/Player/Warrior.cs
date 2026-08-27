@@ -1,11 +1,18 @@
+using DungeonMaster.Core;
 using UnityEngine;
 
 namespace DungeonMaster.Character.Player
 {
     public class Warrior : Player
     {
+        [Header("적 검출 설정")]
+        [SerializeField] private Vector2 _size = new Vector2(1f, 2f);
+        [SerializeField] private float _offset = 0.5f;
+        [SerializeField] private LayerMask _enemyLayer;
+        
         [SerializeField] private WarriorSO _warriorSO;
-
+        
+        
         #region 유니티 생명주기
 
         protected override void Awake()
@@ -32,8 +39,23 @@ namespace DungeonMaster.Character.Player
         // 애니메이션 이벤트에서 호출할 메서드
         public void OnAttackAnimEvent()
         {
-            // TODO: 실제 공격 처리 로직
-            Debug.Log("전사 공격 타이밍!!!");
+            // 실제 공격 처리 로직
+            // 공격 범위 계산 (박스, 오프셋)
+            Vector2 direction = _spriteRenderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 center = (Vector2)transform.position + (direction * _offset);
+            
+            // 추출 OverlapBoxAll
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(center, _size, 0, _enemyLayer);
+
+            foreach (var collider in colliders)
+            {
+                collider.GetComponent<IDamageable>()?.TakeDamage(_warriorSO.attackDamage);
+
+                // if (collider.TryGetComponent<IDamageable>(out IDamageable other))
+                // {
+                //     other.TakeDamage(_warriorSO.defense);
+                // }
+            }
         }
 
         public override void TakeDamage(float damage)

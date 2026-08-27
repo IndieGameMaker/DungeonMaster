@@ -105,6 +105,14 @@ namespace DungeonMaster.Character.Enemy
                other.GetComponent<IDamageable>()?.TakeDamage(_enemySO.attackDamage);                 
             }
         }
+        
+        /*
+         * Collider / Collider2D => IsTrigger 체크
+         * OnTriggerEnter / OnTriggerStay / OnTriggerExit
+         *
+         * IsTrigger 언체크
+         * OnCollisionEnter / OnCollisionStay / OnCollisionExit
+         */
         #endregion
 
     }
