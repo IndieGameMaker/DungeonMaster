@@ -128,8 +128,7 @@ namespace DungeonMaster.Character.Enemy
                     .Where(c => (c.transform.position - transform.position).sqrMagnitude >= _enemySO.attackDistance)
                     .OrderBy(c => Random.value)
                     .Take(3)
-                    .First()
-                    .transform;
+                    .FirstOrDefault()?.transform;
                 
                 // target = targets
                 //     .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
