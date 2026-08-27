@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using DungeonMaster.Character.Enemy.FSM;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace DungeonMaster.Character.Enemy
 {
@@ -122,10 +123,19 @@ namespace DungeonMaster.Character.Enemy
                 // A, B  Vector2.Distance(A, B)
                 // A, B  (A - B).magnitude
                 // A, B  (A - B).sqrMagnitude
+
                 target = colliders
-                    .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
+                    .Where(c => (c.transform.position - transform.position).sqrMagnitude >= _enemySO.attackDistance)
+                    .OrderBy(c => Random.value)
+                    .Take(3)
                     .First()
                     .transform;
+                
+                // target = targets
+                //     .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
+                //     .First()
+                //     .transform;
+                
                 return target != null;
             }
 

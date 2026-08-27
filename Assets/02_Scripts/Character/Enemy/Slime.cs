@@ -63,6 +63,7 @@ namespace DungeonMaster.Character.Enemy
             // while : 대시 처리 (앞으로 점진적으로 이동)
             
             // 잠시 대기
+            yield return null;
             
             // while : 원위치로 복귀
             
