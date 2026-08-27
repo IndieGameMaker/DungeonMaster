@@ -12,6 +12,7 @@ namespace DungeonMaster.Character.Enemy
     {
         [Header("기본 스텟")] 
         [SerializeField] protected EnemySO _enemySO;
+        public EnemySO EnemySO => _enemySO;
 
         [Header("주인공 레이어 마스크")]
         [SerializeField] protected LayerMask _playerMask;
@@ -48,7 +49,7 @@ namespace DungeonMaster.Character.Enemy
         public void SetHit() => _animator.SetTrigger(hashHit);
         
         // 가장 가까이 있는 주인공을 검출
-        protected Transform target;
+        public Transform target;
         
         #region 유니티 생명주기
 
@@ -124,16 +125,16 @@ namespace DungeonMaster.Character.Enemy
                 // A, B  (A - B).magnitude
                 // A, B  (A - B).sqrMagnitude
 
-                target = colliders
-                    .Where(c => (c.transform.position - transform.position).sqrMagnitude >= _enemySO.attackDistance)
-                    .OrderBy(c => Random.value)
-                    .Take(3)
-                    .FirstOrDefault()?.transform;
+                // target = colliders
+                //     .Where(c => (c.transform.position - transform.position).sqrMagnitude <= _enemySO.attackDistance * _enemySO.attackDistance)
+                //     .OrderBy(c => Random.value)
+                //     .Take(3)
+                //     .FirstOrDefault()?.transform;
                 
-                // target = targets
-                //     .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
-                //     .First()
-                //     .transform;
+                target = colliders
+                    .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
+                    .First()
+                    .transform;
                 
                 return target != null;
             }

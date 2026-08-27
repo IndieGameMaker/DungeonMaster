@@ -60,10 +60,21 @@ namespace DungeonMaster.Character.Enemy
             // 공격할 좌표를 계산
             Vector2 dashTarget = currPosition + dashDir * _dashDistance;
             
-            // while : 대시 처리 (앞으로 점진적으로 이동)
+            // 실제로 이동한 시간
+            float dashTime = 0f;
+            // 이동 시간 계산
+            float dashDuration = _dashDistance / _dashSpeed;
             
+            // while : 대시 처리 (앞으로 점진적으로 이동)
+            while (dashTime < dashDuration)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, dashTarget, Time.deltaTime * _dashSpeed);
+                dashTime += Time.deltaTime;
+                yield return null;
+            }
+
             // 잠시 대기
-            yield return null;
+            
             
             // while : 원위치로 복귀
             

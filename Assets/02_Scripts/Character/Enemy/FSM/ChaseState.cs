@@ -16,7 +16,16 @@ namespace DungeonMaster.Character.Enemy.FSM
             {
                 if (enemy.DetectPlayer())
                 {
-                    // Debug.Log($"플레이어 검출 : {Time.time}");
+                    // 공격 범위 내에 플레이어가 있는지 확인
+                    float attackRange = Vector2.Distance(enemy.target.position, enemy.transform.position);
+
+                    if (attackRange <= enemy.EnemySO.attackDistance)
+                    {
+                        // 공격 상태로 전환
+                        enemy.ChangeState<AttackState>();
+                        return;
+                    }
+                    
                     enemy.MoveToPlayer();
                 }
                 else

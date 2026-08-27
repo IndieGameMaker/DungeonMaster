@@ -7,7 +7,14 @@ namespace DungeonMaster.Character.Enemy.FSM
         public void OnEnter(Enemy enemy)
         {
             Debug.Log("Attack 진입");
-            // 애니메이션을 Attack 변경
+            
+            enemy.StopMoving();
+            
+            // 대시 공격은 슬라임 전용
+            if (enemy is Slime slime)
+            {
+                enemy.StartCoroutine(slime.DashAttack());
+            }
         }
 
         public void OnUpdate(Enemy enemy)
