@@ -156,7 +156,7 @@ namespace DungeonMaster.Character.Enemy
             }
             
             // 넉백 후 바로 공격하지 않도록 스턴 효과
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             LastAttackTime = Time.time;
             IsKnockBacking = false;
         }

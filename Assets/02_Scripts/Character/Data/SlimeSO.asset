@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b43a113cef5940cc9fbab8ae6d75a68, type: 3}
   m_Name: SlimeSO
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
-  maxHp: 800
+  maxHp: 80
   moveSpeed: 1
   chaseDistance: 5
   attackDistance: 2
