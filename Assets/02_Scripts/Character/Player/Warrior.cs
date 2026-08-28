@@ -1,3 +1,4 @@
+using System;
 using DungeonMaster.Core;
 using UnityEngine;
 
@@ -66,6 +67,22 @@ namespace DungeonMaster.Character.Player
             base.TakeDamage(actualDamage);
             Debug.Log($"Warrior가 {actualDamage}의 피해를 입었습니다. HP : {_currHp}/{_maxHp}");
         }
+        #endregion
+
+        #region Gizmos
+
+        private void OnDrawGizmos()
+        {
+            // Editor 모드에서 NullReferenceException 방지
+            if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            Vector2 direction = _spriteRenderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 center = (Vector2)transform.position + (direction * _offset);
+
+            Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
+            Gizmos.DrawCube(center, new Vector3(_size.x, _size.y, 0f));
+        }
+
         #endregion
     }
 }
