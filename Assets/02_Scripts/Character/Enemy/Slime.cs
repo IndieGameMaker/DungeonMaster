@@ -15,6 +15,10 @@ namespace DungeonMaster.Character.Enemy
         [SerializeField] private float _returnSpeed = 8f;
         [SerializeField] private float _dashDistance = 0.5f;
         [SerializeField] private float _waitingTime = 0.2f;
+
+        [Header("넉백 설정")] 
+        [SerializeField] private float knockbackSpeed = 15f;
+        [SerializeField] private float knockbackDistance = 2.5f;
         
         // 슬라임 공격 시작위치 저장(원래 위치)
         private Vector2 originPosition;
@@ -129,6 +133,23 @@ namespace DungeonMaster.Character.Enemy
             // TODO: 넉백 처리
         }
 
+        // 넉백 처리 코루틴
+        private IEnumerator Knockback()
+        {
+            // 넉백 방향 계산 
+            // Normalized Vector(정규화 벡터) , Unit Vector (단위 벡터)  ==> 벡터의 크기가 1인 벡터
+            Vector2 knockbackDir = (transform.position - target.position).normalized;
+            
+            float knockbackTime = 0f;
+            
+            // 넉백 시간 계산 (거리 / 속도) = 시간
+            float duration = knockbackDistance / knockbackSpeed;
+            while (knockbackTime < duration)
+            {
+                // Translate(방향 * 속도 * DeltaTime, 기준좌표계)
+                transform.Translate(knockbackDir * knockbackSpeed * Time.deltaTime);
+            }
+        }
         #endregion
     }
 }
