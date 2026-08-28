@@ -130,7 +130,8 @@ namespace DungeonMaster.Character.Enemy
             
             base.TakeDamage(damage);
             
-            // TODO: 넉백 처리
+            // 넉백 처리 호출
+            StartCoroutine(Knockback());
         }
 
         // 넉백 처리 코루틴
@@ -148,7 +149,12 @@ namespace DungeonMaster.Character.Enemy
             {
                 // Translate(방향 * 속도 * DeltaTime, 기준좌표계)
                 transform.Translate(knockbackDir * knockbackSpeed * Time.deltaTime);
+                knockbackTime += Time.deltaTime;
+                yield return null;
             }
+            
+            // 넉백 후 바로 공격하지 않도록 스턴 효과
+            yield return new WaitForSeconds(1.5f);
         }
         #endregion
     }
