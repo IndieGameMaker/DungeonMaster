@@ -79,7 +79,7 @@ namespace DungeonMaster.Character.Player
             Vector2 direction = _spriteRenderer.flipX ? Vector2.left : Vector2.right;
             Vector2 center = (Vector2)transform.position + (direction * _offset);
 
-            Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
+            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
             Gizmos.DrawCube(center, new Vector3(_size.x, _size.y, 0f));
         }
 

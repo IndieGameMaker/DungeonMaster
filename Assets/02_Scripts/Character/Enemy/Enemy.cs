@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DungeonMaster.Character.Enemy.FSM;
+using DungeonMaster.Core;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace DungeonMaster.Character.Enemy
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IDamageable
     {
         [Header("기본 스텟")] 
-        [SerializeField] protected EnemySO _enemySO;
+        [SerializeField] 
+        protected EnemySO _enemySO;
+        protected float _currHP;
+        
         public EnemySO EnemySO => _enemySO;
-
+        public bool IsDead => _currHP <= 0f;
+        
         [Header("주인공 레이어 마스크")]
         [SerializeField] protected LayerMask _playerMask;
         
@@ -59,6 +64,9 @@ namespace DungeonMaster.Character.Enemy
             InitStates();
             // 컴포넌트 초기화
             InitComponents();
+            
+            // 초기 HP 설정
+            _currHP = _enemySO.maxHp;
         }
 
         protected virtual void Start()
@@ -210,6 +218,31 @@ namespace DungeonMaster.Character.Enemy
             {
                 ChangeState<AttackState>();
             }
+        }
+
+        #endregion
+
+        #region 피격 관련 메서드
+
+        public virtual void TakeDamage(float damage)
+        {
+            if (IsDead) return;
+            
+            _currHP -= damage;
+            if (_currHP <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                // Hit 애니메이션 처리
+                _animator.SetTrigger(hashHit);
+            }
+        }
+
+        protected virtual void Die()
+        {
+            Debug.Log("사망");
         }
 
         #endregion
