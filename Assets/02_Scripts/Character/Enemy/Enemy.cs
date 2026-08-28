@@ -19,6 +19,8 @@ namespace DungeonMaster.Character.Enemy
         
         public EnemySO EnemySO => _enemySO;
         public bool IsDead => _currHP <= 0f;
+        // 넉백 진행 여부
+        public bool IsKnockBacking { get; protected set; }
         
         [Header("주인공 레이어 마스크")]
         [SerializeField] protected LayerMask _playerMask;

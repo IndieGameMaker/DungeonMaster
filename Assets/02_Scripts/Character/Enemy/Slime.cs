@@ -137,6 +137,8 @@ namespace DungeonMaster.Character.Enemy
         // 넉백 처리 코루틴
         private IEnumerator Knockback()
         {
+            IsKnockBacking = true;
+            
             // 넉백 방향 계산 
             // Normalized Vector(정규화 벡터) , Unit Vector (단위 벡터)  ==> 벡터의 크기가 1인 벡터
             Vector2 knockbackDir = (transform.position - target.position).normalized;
@@ -155,6 +157,8 @@ namespace DungeonMaster.Character.Enemy
             
             // 넉백 후 바로 공격하지 않도록 스턴 효과
             yield return new WaitForSeconds(1.5f);
+            LastAttackTime = Time.time;
+            IsKnockBacking = false;
         }
         #endregion
     }

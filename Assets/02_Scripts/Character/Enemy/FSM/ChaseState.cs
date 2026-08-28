@@ -12,6 +12,12 @@ namespace DungeonMaster.Character.Enemy.FSM
 
         public void OnUpdate(Enemy enemy)
         {
+            if (enemy.IsKnockBacking)
+            {
+                enemy.StopMoving();
+                return;
+            }
+            
             if (enemy.PlayerDetectable())
             {
                 if (enemy.DetectPlayer())

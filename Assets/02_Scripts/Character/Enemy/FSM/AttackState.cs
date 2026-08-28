@@ -11,6 +11,9 @@ namespace DungeonMaster.Character.Enemy.FSM
 
         public void OnUpdate(Enemy enemy)
         {
+            // 넉백 중에는 거리 판정, 공격 시작 모두 스킵
+            if (enemy.IsKnockBacking) return;
+            
             // 공격 범위 밖에 있을 경우 추적 상태로 전환
             if (!enemy.IsPlayerAttackRange())
             {
