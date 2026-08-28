@@ -69,6 +69,8 @@ namespace DungeonMaster.Character.Enemy
             // while : 대시 처리 (앞으로 점진적으로 이동)
             while (dashTime < dashDuration)
             {
+                if (!_isAttacking) yield break;
+                
                 transform.position = Vector2.MoveTowards(transform.position, dashTarget, Time.deltaTime * _dashSpeed);
                 dashTime += Time.deltaTime;
                 yield return null;
@@ -115,5 +117,18 @@ namespace DungeonMaster.Character.Enemy
          */
         #endregion
 
+        #region 피격 로직
+
+        public override void TakeDamage(float damage)
+        {
+            // 공격 코루틴 정지
+            if (_isAttacking) _isAttacking = false;
+            
+            base.TakeDamage(damage);
+            
+            // TODO: 넉백 처리
+        }
+
+        #endregion
     }
 }

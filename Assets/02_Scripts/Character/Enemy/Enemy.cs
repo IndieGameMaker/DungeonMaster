@@ -227,7 +227,6 @@ namespace DungeonMaster.Character.Enemy
 
         public virtual void TakeDamage(float damage)
         {
-            Debug.Log("Take damage");
             if (IsDead) return;
             
             _currHP -= damage;
