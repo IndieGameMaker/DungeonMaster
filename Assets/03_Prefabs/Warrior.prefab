@@ -305,6 +305,11 @@ MonoBehaviour:
   _moveSpeed: 5
   _attackDamage: 20
   _attackCooldown: 0.5
+  _size: {x: 1.5, y: 2.5}
+  _offset: 1
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _warriorSO: {fileID: 11400000, guid: f18af14597e6f4a059bd3f7ffc80a468, type: 2}
 --- !u!1 &6785108991516880237
 GameObject:

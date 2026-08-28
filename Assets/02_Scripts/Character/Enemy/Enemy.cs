@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -226,6 +227,7 @@ namespace DungeonMaster.Character.Enemy
 
         public virtual void TakeDamage(float damage)
         {
+            Debug.Log("Take damage");
             if (IsDead) return;
             
             _currHP -= damage;
@@ -242,7 +244,13 @@ namespace DungeonMaster.Character.Enemy
 
         protected virtual void Die()
         {
-            Debug.Log("사망");
+            StartCoroutine(DestroyEnemy());
+        }
+
+        private IEnumerator DestroyEnemy()
+        {
+            yield return new WaitForSeconds(0.5f);
+            Destroy(gameObject);
         }
 
         #endregion
