@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
     private AudioSource _sfxEnemySource;
     
     #region 유니티 생명주기
-
     private void Awake()
     {
         if (Instance == null)
@@ -31,5 +30,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // 컴포넌트 생성
+        _bgmSource = gameObject.AddComponent<AudioSource>();
+        _sfxPlayerSource = gameObject.AddComponent<AudioSource>();
+        _sfxEnemySource = gameObject.AddComponent<AudioSource>();
+    }
     #endregion
 }
