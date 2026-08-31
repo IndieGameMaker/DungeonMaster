@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     // 오디오 데이터 SO
-    [SerializeField] private AudioDataSO _audioDataSO;
+    public AudioDataSO AudioDataSO {get; private set;}
     
     // 오디오 소스 컴포넌트 변수
     private AudioSource _bgmSource;
@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
         _sfxEnemySource.loop = false;
         
         // 게임 시작시 BGM 재생
-        PlayBGM(_audioDataSO.battleBGM);
+        PlayBGM(AudioDataSO.battleBGM);
     }
     #endregion
 

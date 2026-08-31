@@ -33,7 +33,7 @@ namespace DungeonMaster.Character.Player
         
         protected override void Attack()
         {
-            Debug.Log("공격 실행");
+            AudioManager.Instance.PlayerSFX(AudioManager.Instance.AudioDataSO.playerAttackSFX);
         }
         
         // 애니메이션 이벤트에서 호출할 메서드
