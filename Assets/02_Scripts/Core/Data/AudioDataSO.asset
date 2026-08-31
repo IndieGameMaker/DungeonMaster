@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31105c27a3ae40278ebd638e67400f8, type: 3}
   m_Name: AudioDataSO
   m_EditorClassIdentifier: Assembly-CSharp::AudioDataSO
-  mainBGM: {fileID: 0}
-  battleBGM: {fileID: 0}
-  playerAttackSFX: {fileID: 0}
-  enemyAttackSFX: {fileID: 0}
-  itemPickupSFX: {fileID: 0}
+  mainBGM: {fileID: 8300000, guid: 36db2b7bc8db5419486e7d870105e419, type: 3}
+  battleBGM: {fileID: 8300000, guid: f37cc21d1990844ed904da2729bef37e, type: 3}
+  playerAttackSFX: {fileID: 8300000, guid: b6a77845e25fd49c798991493197d224, type: 3}
+  enemyAttackSFX: {fileID: 8300000, guid: c29a5676a809340668fb9c2b28cd8b1b, type: 3}
+  itemPickupSFX: {fileID: 8300000, guid: ab6edeebf2d4149a5b3dfb9a31c406d2, type: 3}
