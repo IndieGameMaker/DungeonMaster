@@ -36,6 +36,22 @@ public class AudioManager : MonoBehaviour
         _bgmSource = gameObject.AddComponent<AudioSource>();
         _sfxPlayerSource = gameObject.AddComponent<AudioSource>();
         _sfxEnemySource = gameObject.AddComponent<AudioSource>();
+        
+        _bgmSource.loop = true;
+        _sfxPlayerSource.loop = false;
+        _sfxEnemySource.loop = false;
+        
+        // 게임 시작시 BGM 재생
+        PlayBGM(_audioDataSO.battleBGM);
+    }
+    #endregion
+
+    #region 공통 메서드
+
+    public void PlayBGM(AudioClip clip)
+    {
+        _bgmSource.clip = clip;
+        _bgmSource.Play();
     }
     #endregion
 }
