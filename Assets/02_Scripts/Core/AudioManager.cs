@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
         {
             // 처음 생성된 경우
             Instance = this;
-            p(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
