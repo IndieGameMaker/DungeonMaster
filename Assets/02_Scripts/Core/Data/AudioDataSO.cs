@@ -6,4 +6,11 @@ public class AudioDataSO : ScriptableObject
     [Header("BGM Clips")] 
     public AudioClip mainBGM;
     public AudioClip battleBGM;
+
+    [Header("SFX Clips")] 
+    public AudioClip playerAttackSFX;
+    public AudioClip enemyAttackSFX;
+    
+    [Header("SFX Items")]
+    public AudioClip itemPickupSFX;
 }
