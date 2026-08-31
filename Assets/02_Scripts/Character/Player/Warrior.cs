@@ -12,8 +12,9 @@ namespace DungeonMaster.Character.Player
         [SerializeField] private LayerMask _enemyLayer;
         
         [SerializeField] private WarriorSO _warriorSO;
-        
-        
+        [SerializeField] private AudioClip _attackSFX;
+
+        private AudioSource _audioSource;
         #region 유니티 생명주기
 
         protected override void Awake()
@@ -23,6 +24,8 @@ namespace DungeonMaster.Character.Player
             _moveSpeed = _warriorSO.moveSpeed;
             _attackDamage = _warriorSO.attackDamage;
             _attackCooldown = _warriorSO.attackCooldown;
+            
+            _audioSource = GetComponent<AudioSource>();
             
             Debug.Log($"전사의 방어력: {_warriorSO.defense}");
             base.Awake();
@@ -35,6 +38,7 @@ namespace DungeonMaster.Character.Player
         protected override void Attack()
         {
             Debug.Log("공격 실행");
+            _audioSource.PlayOneShot(_attackSFX, 0.8f);
         }
         
         // 애니메이션 이벤트에서 호출할 메서드
