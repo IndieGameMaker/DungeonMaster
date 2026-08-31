@@ -47,11 +47,20 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region 공통 메서드
-
     public void PlayBGM(AudioClip clip)
     {
         _bgmSource.clip = clip;
         _bgmSource.Play();
+    }
+
+    public void PlayerSFX(AudioClip clip)
+    {
+        _sfxPlayerSource.PlayOneShot(clip);
+    }
+
+    public void EnemySFX(AudioClip clip)
+    {
+        _sfxEnemySource.PlayOneShot(clip);
     }
     #endregion
 }
