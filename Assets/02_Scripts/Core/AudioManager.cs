@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     // 오디오 데이터 SO
-    public AudioDataSO AudioDataSO {get; private set;}
+    public AudioDataSO AudioDataSO;
     
     // 오디오 소스 컴포넌트 변수
     private AudioSource _bgmSource;
