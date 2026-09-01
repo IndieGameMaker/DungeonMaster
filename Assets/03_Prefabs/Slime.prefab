@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4263104341530882251}
   - component: {fileID: 47320004802000095}
   - component: {fileID: 3133784410910421293}
-  - component: {fileID: 2180448338834898236}
+  - component: {fileID: 7493372361525168490}
   m_Layer: 9
   m_Name: Slime
   m_TagString: Untagged
@@ -169,8 +169,8 @@ MonoBehaviour:
   _waitingTime: 0.2
   knockbackSpeed: 15
   knockbackDistance: 1
---- !u!70 &2180448338834898236
-CapsuleCollider2D:
+--- !u!58 &7493372361525168490
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -199,10 +199,9 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1.42}
-  m_Direction: 0
+  m_Radius: 0.5
