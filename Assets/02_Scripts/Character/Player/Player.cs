@@ -1,6 +1,7 @@
 using DungeonMaster.Core;
 using UnityEngine;
 using DungeonMaster.InputSystem;
+using Unity.Cinemachine;
 
 namespace DungeonMaster.Character.Player
 {
@@ -35,6 +36,7 @@ namespace DungeonMaster.Character.Player
         protected Animator _animator;
         protected SpriteRenderer _spriteRenderer;
         protected InputHandler _inputHandler;
+        protected CinemachineImpulseSource _impulseSource;
         #endregion
         
         // Facing 처리를 위한 Weapon Arm
@@ -59,6 +61,7 @@ namespace DungeonMaster.Character.Player
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _inputHandler = GetComponent<InputHandler>();
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
             
             // weaponArm 설정
             _weaponArm = transform.Find("Arm");

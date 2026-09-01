@@ -47,6 +47,9 @@ namespace DungeonMaster.Character.Player
             // 추출 OverlapBoxAll
             Collider2D[] colliders = Physics2D.OverlapBoxAll(center, _size, 0, _enemyLayer);
 
+            // 적 캐릭터에 타격을 입힐 때만 쉐이킹
+            if (colliders.Length > 0) _impulseSource.GenerateImpulse(0.2f);
+            
             foreach (var collider in colliders)
             {
                 collider.GetComponent<IDamageable>()?.TakeDamage(_warriorSO.attackDamage);
