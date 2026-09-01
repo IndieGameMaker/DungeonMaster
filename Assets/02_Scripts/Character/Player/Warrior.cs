@@ -48,7 +48,7 @@ namespace DungeonMaster.Character.Player
             Collider2D[] colliders = Physics2D.OverlapBoxAll(center, _size, 0, _enemyLayer);
 
             // 적 캐릭터에 타격을 입힐 때만 쉐이킹
-            if (colliders.Length > 0) _impulseSource.GenerateImpulse(0.1f);
+            if (colliders.Length > 0) CameraShake.Instance.Shake(0.1f);
             
             foreach (var collider in colliders)
             {
@@ -70,6 +70,15 @@ namespace DungeonMaster.Character.Player
             Debug.Log($"Warrior가 {actualDamage}의 피해를 입었습니다. HP : {_currHp}/{_maxHp}");
         }
         #endregion
+
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("ENEMY"))
+            {
+                CameraShake.Instance.Shake(0.1f);
+            }
+        }
 
         #region Gizmos
 

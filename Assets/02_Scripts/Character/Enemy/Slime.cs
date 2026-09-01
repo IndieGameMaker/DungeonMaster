@@ -72,6 +72,7 @@ namespace DungeonMaster.Character.Enemy
             
             // 공격 사운드 재생
             AudioManager.Instance.EnemySFX(AudioManager.Instance.AudioDataSO.enemyAttackSFX);
+            CameraShake.Instance.Shake(0.1f);
             
             // while : 대시 처리 (앞으로 점진적으로 이동)
             while (dashTime < dashDuration)
