@@ -1,5 +1,6 @@
 using DungeonMaster.Core;
 using UnityEngine;
+using UnityEngine.UI;
 using DungeonMaster.InputSystem;
 
 namespace DungeonMaster.Character.Player
@@ -35,6 +36,7 @@ namespace DungeonMaster.Character.Player
         protected Animator _animator;
         protected SpriteRenderer _spriteRenderer;
         protected InputHandler _inputHandler;
+        private Image _hpBar;
         #endregion
         
         // Facing 처리를 위한 Weapon Arm
@@ -59,6 +61,8 @@ namespace DungeonMaster.Character.Player
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _inputHandler = GetComponent<InputHandler>();
+            
+            _hpBar = GameObject.Find("Canvas").GetComponentsInChildren<Image>()[1];
             
             // weaponArm 설정
             _weaponArm = transform.Find("Arm");
@@ -154,6 +158,10 @@ namespace DungeonMaster.Character.Player
         {
             if (_isDead) return;
             _currHp -= damage;
+            
+            // HPBar 갱신
+            _hpBar.fillAmount = _currHp / _maxHp;
+            
             _animator.SetTrigger(hashHit);
 
             if (_currHp <= 0f)
