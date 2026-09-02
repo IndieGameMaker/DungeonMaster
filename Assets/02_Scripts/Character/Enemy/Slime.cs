@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using DungeonMaster.Character.Enemy.FSM;
 using DungeonMaster.Core;
 using UnityEngine;
@@ -10,40 +9,39 @@ namespace DungeonMaster.Character.Enemy
 {
     public class Slime : Enemy
     {
-        [Header("슬라임 공격 스텟")] 
+        [Header("슬라임 공격 스텟")]
         [SerializeField] private float _dashSpeed = 10f;
         [SerializeField] private float _returnSpeed = 8f;
         [SerializeField] private float _dashDistance = 0.5f;
         [SerializeField] private float _waitingTime = 0.2f;
 
-        [Header("넉백 설정")] 
+        [Header("넉백 설정")]
         [SerializeField] private float knockbackSpeed = 15f;
         [SerializeField] private float knockbackDistance = 2.5f;
-        
+
         // 슬라임 공격 시작위치 저장(원래 위치)
         private Vector2 originPosition;
         // 공격 여부
         private bool _isAttacking = false;
         // 마지막 공격 시간 기록
-        public float LastAttackTime {get; private set;} 
-        
+        public float LastAttackTime { get; private set; }
+
         protected override void InitStates()
         {
             _states = new Dictionary<Type, IState>
             {
-               // Indexer 방식 값 추가
-               [typeof(IdleState)] = new IdleState(),
-               [typeof(ChaseState)] = new ChaseState(),
-               [typeof(AttackState)] = new AttackState()
+                // Indexer 방식 값 추가
+                [typeof(IdleState)] = new IdleState(),
+                [typeof(ChaseState)] = new ChaseState(),
+                [typeof(AttackState)] = new AttackState()
             };
-            
+
             Debug.Log("Slime 상태 초기화 완료");
         }
 
         protected override void Start()
         {
             base.Start();
-
         }
 
         #region 공격 메서드
@@ -56,7 +54,7 @@ namespace DungeonMaster.Character.Enemy
             LastAttackTime = Time.time;
             // 현재 위치 저장
             originPosition = transform.position;
-            
+
             // 목표 좌표 계산
             // 현재 위치 Vector2
             Vector2 currPosition = new Vector2(transform.position.x, transform.position.y);
@@ -64,21 +62,21 @@ namespace DungeonMaster.Character.Enemy
             Vector2 dashDir = (target.position - transform.position).normalized;
             // 공격할 좌표를 계산
             Vector2 dashTarget = currPosition + dashDir * _dashDistance;
-            
+
             // 실제로 이동한 시간
             float dashTime = 0f;
             // 이동 시간 계산
             float dashDuration = _dashDistance / _dashSpeed;
-            
+
             // 공격 사운드 재생
             AudioManager.Instance.EnemySFX(AudioManager.Instance.AudioDataSO.enemyAttackSFX);
             CameraShake.Instance.Shake(0.1f);
-            
+
             // while : 대시 처리 (앞으로 점진적으로 이동)
             while (dashTime < dashDuration)
             {
                 if (!_isAttacking) yield break;
-                
+
                 transform.position = Vector2.MoveTowards(transform.position, dashTarget, Time.deltaTime * _dashSpeed);
                 dashTime += Time.deltaTime;
                 yield return null;
@@ -86,7 +84,7 @@ namespace DungeonMaster.Character.Enemy
 
             // 잠시 대기
             yield return new WaitForSeconds(_waitingTime);
-            
+
             // while : 원위치로 복귀
             float returnTime = 0f;
             float returnDistance = Vector2.Distance(transform.position, originPosition);
@@ -98,7 +96,7 @@ namespace DungeonMaster.Character.Enemy
                 returnTime += Time.deltaTime;
                 yield return null;
             }
-            
+
             _isAttacking = false;
         }
 
@@ -109,13 +107,13 @@ namespace DungeonMaster.Character.Enemy
         private void OnTriggerEnter2D(Collider2D other)
         {
             Debug.Log($"충돌 콜백 호출 : {other.gameObject.name}");
-            
+
             if (other.CompareTag("PLAYER"))
             {
-               other.GetComponent<IDamageable>()?.TakeDamage(_enemySO.attackDamage);                 
+                other.GetComponent<IDamageable>()?.TakeDamage(_enemySO.attackDamage);
             }
         }
-        
+
         /*
          * Collider / Collider2D => IsTrigger 체크
          * OnTriggerEnter / OnTriggerStay / OnTriggerExit
@@ -131,9 +129,9 @@ namespace DungeonMaster.Character.Enemy
         {
             // 공격 코루틴 정지
             if (_isAttacking) _isAttacking = false;
-            
+
             base.TakeDamage(damage);
-            
+
             // 넉백 처리 호출
             StartCoroutine(Knockback());
         }
@@ -142,13 +140,13 @@ namespace DungeonMaster.Character.Enemy
         private IEnumerator Knockback()
         {
             IsKnockBacking = true;
-            
+
             // 넉백 방향 계산 
             // Normalized Vector(정규화 벡터) , Unit Vector (단위 벡터)  ==> 벡터의 크기가 1인 벡터
             Vector2 knockbackDir = (transform.position - target.position).normalized;
-            
+
             float knockbackTime = 0f;
-            
+
             // 넉백 시간 계산 (거리 / 속도) = 시간
             float duration = knockbackDistance / knockbackSpeed;
             while (knockbackTime < duration)
@@ -158,7 +156,7 @@ namespace DungeonMaster.Character.Enemy
                 knockbackTime += Time.deltaTime;
                 yield return null;
             }
-            
+
             // 넉백 후 바로 공격하지 않도록 스턴 효과
             yield return new WaitForSeconds(0.5f);
             LastAttackTime = Time.time;
