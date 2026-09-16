@@ -392,7 +392,7 @@ Tilemap:
       - {fileID: 1750694229, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -802620863, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -663891516, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 3.062522
+      m_AnimationSpeed: 2.172828
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 2, z: 0}
@@ -402,7 +402,7 @@ Tilemap:
       - {fileID: 1750694229, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -802620863, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -663891516, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 2.7966304
+      m_AnimationSpeed: 3.6585727
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -2, y: 2, z: 0}
@@ -412,7 +412,7 @@ Tilemap:
       - {fileID: 1750694229, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -802620863, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -663891516, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 3.7312737
+      m_AnimationSpeed: 3.3863697
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 7, y: 6, z: 0}
@@ -422,7 +422,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -6074762140567998671, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -2315569526197371611, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 2.980043
+      m_AnimationSpeed: 1.6743929
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: 6, z: 0}
@@ -432,7 +432,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -6074762140567998671, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -2315569526197371611, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 2.8652792
+      m_AnimationSpeed: 2.5777519
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 13, y: 6, z: 0}
@@ -442,7 +442,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -6074762140567998671, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
       - {fileID: -2315569526197371611, guid: 655c53ec3587b4ce79c904eba9468c5a, type: 3}
-      m_AnimationSpeed: 1.880029
+      m_AnimationSpeed: 2.7197566
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2268,6 +2268,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &423325804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 100693546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1001 &502102535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2866,6 +2877,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814558847}
   m_CullTransparentMesh: 1
+--- !u!114 &893704670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 502102535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &908220387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3145,6 +3167,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 1013845973}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1013845975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1013845973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
+--- !u!114 &1022631838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1010070048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1001 &1039657869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3349,6 +3393,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 1042107816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077390634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1042107816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &1133692289
 GameObject:
   m_ObjectHideFlags: 0
@@ -34467,6 +34522,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2be37a51f3c7043fa8d1fd47d16ea335, type: 3}
+--- !u!114 &1591259348 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 396550044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &1658210550
 GameObject:
   m_ObjectHideFlags: 0
@@ -34647,6 +34713,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de9b1629e5e44e0ca4aae7588dedfdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Inventory
+  _slots:
+  - {fileID: 2404683266948177608}
+  - {fileID: 1077390634}
+  - {fileID: 1022631838}
+  - {fileID: 1591259348}
+  - {fileID: 893704670}
+  - {fileID: 1720857939}
+  - {fileID: 1898660572}
+  - {fileID: 1948244823}
+  - {fileID: 2010835994}
+  - {fileID: 1013845975}
+  - {fileID: 423325804}
+  - {fileID: 1719449419}
 --- !u!1001 &1719449417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34749,6 +34828,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 1719449417}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1719449419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1719449417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
+--- !u!114 &1720857939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1039657869}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &1770620517
 GameObject:
   m_ObjectHideFlags: 0
@@ -34930,6 +35031,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 1898660570}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1898660572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1898660570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1001 &1948244821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35032,6 +35144,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 1948244821}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948244823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 1948244821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &1983430628
 GameObject:
   m_ObjectHideFlags: 0
@@ -36588,6 +36711,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 2010835992}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2010835994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 2010835992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1 &2095894743
 GameObject:
   m_ObjectHideFlags: 0
@@ -36864,6 +36998,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3634034768898827387, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
   m_PrefabInstance: {fileID: 2404683266948177606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2404683266948177608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7985877570458444473, guid: 7c8d7fdb5195842e6b0867e9c2abd6f3, type: 3}
+  m_PrefabInstance: {fileID: 2404683266948177606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
