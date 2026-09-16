@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 3634034768898827387}
   - component: {fileID: 756834556864469680}
   - component: {fileID: 4933361088431109324}
+  - component: {fileID: 7985877570458444473}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -327,6 +328,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7985877570458444473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011844403581971987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29eacb332f5345ed9bcf29d5f01164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonMaster.InventorySystem.Slot
+  slotIndex: 0
+  isSelected: 0
+  isDefaultSelected: 0
+  item: {fileID: 1572294393957088751}
+  selectedMarkImage: {fileID: 7680151322521885817}
+  itemImage: {fileID: 3489811588383575200}
+  equipText: {fileID: 7121769238866710328}
 --- !u!1 &4124859008045825145
 GameObject:
   m_ObjectHideFlags: 0
