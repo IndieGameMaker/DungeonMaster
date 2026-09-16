@@ -138,7 +138,7 @@ namespace DungeonMaster.Character.Player
             if (Time.time >= lastAttackTime + _attackCooldown)
             {
                 lastAttackTime = Time.time;
-                _animator.SetTrigger(hashAttack);
+                // _animator.SetTrigger(hashAttack);
                 Attack();
             }
         }

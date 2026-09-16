@@ -312,6 +312,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _warriorSO: {fileID: 11400000, guid: f18af14597e6f4a059bd3f7ffc80a468, type: 2}
+  _warriorAnimator: {fileID: 823447129808150149}
 --- !u!114 &7984030263923586885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +375,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4811403256361978508}
+  - component: {fileID: 823447129808150149}
+  - component: {fileID: 307495322757149321}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -397,6 +400,40 @@ Transform:
   - {fileID: 5963081838878439144}
   m_Father: {fileID: 5123001031783677726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &823447129808150149
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785108991516880237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31f5a8eb2cd984d128f1c73a1cb2064e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &307495322757149321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785108991516880237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619ff8fa1019a477dadef956fdd7781d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WarriorAttackHandler
 --- !u!1 &8142673089132435637
 GameObject:
   m_ObjectHideFlags: 0
