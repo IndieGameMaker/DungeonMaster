@@ -2,6 +2,7 @@ using DungeonMaster.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using DungeonMaster.InputSystem;
+using UnityEngine.EventSystems;
 
 namespace DungeonMaster.Character.Player
 {
@@ -132,6 +133,9 @@ namespace DungeonMaster.Character.Player
 
         private void OnAttack()
         {
+            // 커서가 UI 위에 있을 경우 공격을 무시
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            
             if (_isDead) return;
             
             // 공격 쿨다운 체크

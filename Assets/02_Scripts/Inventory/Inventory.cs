@@ -39,6 +39,15 @@ namespace DungeonMaster.InventorySystem
         {
             Slot.OnSlotSelected -= SlotSelected;
         }
+
+        private void OnGUI()
+        {
+            if (GUILayout.Button("아이템 초기 지급"))
+            {
+                ItemData hpPotion = Resources.Load<ItemData>("ItemData/HpPotionLarge");
+                AddItem(hpPotion);
+            }
+        }
         #endregion
 
 
@@ -67,6 +76,38 @@ namespace DungeonMaster.InventorySystem
                 slot.selectedMarkImage.enabled = false;
             }
         }
+        #endregion
+
+        #region 아이템 처리 메서드
+        // 빈 슬롯 인덱스 찾기
+        private int FindEmptySlot()
+        {
+            for (int i = 0; i < _slots.Count; i++)
+            {
+                if (_slots[i].itemData == null) return i;
+            }
+
+            return -1;
+        }
+        
+        // 아이템 추가
+        private bool AddItem(ItemData item)
+        {
+            // 빈 슬롯 검색
+            int emptySlot = FindEmptySlot();
+            if (emptySlot == -1)
+            {
+                Debug.Log("빈 슬롯이 없습니다.");
+                return false;
+            }
+            
+            // 실제로 아이템 추가
+            _items[emptySlot] = item;
+            _slots[emptySlot].itemData = item;
+            Debug.Log($"{item.itemName} 아이템이 인벤토리에 추가되었습니다.");
+            return true;
+        }
+
         #endregion
     }
 }
