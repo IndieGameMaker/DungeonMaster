@@ -52,6 +52,8 @@ namespace DungeonMaster.InventorySystem
             slot.isSelected = true;
             slot.selectedMarkImage.enabled = true;
             
+            _selectedSlotIndex = slot.slotIndex;
+            
             Debug.Log($"{slot.name} is selected");
         }
 

@@ -78,7 +78,11 @@ namespace DungeonMaster.InventorySystem
         public void OnPointerExit(PointerEventData eventData)
         {
             // 마우스 아웃
-            selectedMarkImage.enabled = false;
+            if (!isSelected)
+            {
+                // 선택되지 않았을 경우에만 해제
+                selectedMarkImage.enabled = false;
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
