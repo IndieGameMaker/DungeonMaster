@@ -8,6 +8,14 @@ namespace DungeonMaster.InventorySystem
 {
     public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
+        private ItemData _itemData;
+
+        public ItemData itemData
+        {
+            get => _itemData;
+            set => UpdateItem(value);
+        }
+
         // 슬롯 인덱스
         public int slotIndex;
         // 선택여부
@@ -36,7 +44,28 @@ namespace DungeonMaster.InventorySystem
             // 디폴트 선택여부 확인
             isSelected = isSelected || isDefaultSelected;
             selectedMarkImage.enabled = isSelected;
+            
+            // ItemData 가 없을 경우 아이템 UI 비활성화
+            item?.SetActive(_itemData != null); 
         }
+        
+        private void UpdateItem(ItemData value)
+        {
+            _itemData = value;
+
+            if (_itemData == null)
+            {
+                itemImage.sprite = null;
+                item?.SetActive(false);
+                equipText.text = "";
+            }
+            else
+            {
+                itemImage.sprite = _itemData.itemIcon;
+                item?.SetActive(true);
+                equipText.text = _itemData.isEquip ? "E" : "";
+            }
+        }        
         #endregion
         
         #region 마우스 이벤트 처리
