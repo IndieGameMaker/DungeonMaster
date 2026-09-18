@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DungeonMaster.Character.Player;
 using UnityEngine;
 
 namespace DungeonMaster.InventorySystem
@@ -14,6 +15,9 @@ namespace DungeonMaster.InventorySystem
         // 선택된 슬롯의 인덱스 
         private int _selectedSlotIndex = -1;
 
+        // Player 참조
+        private Player _player;
+        
         #region 유니티 생명주기
 
         private void Awake()
@@ -28,6 +32,15 @@ namespace DungeonMaster.InventorySystem
             
             // 첫 번째 슬롯을 기본 선택
             _slots[0].isDefaultSelected = true;
+            _selectedSlotIndex = 0;
+        }
+
+        private void Start()
+        {
+            _player = GameObject.FindGameObjectWithTag("PLAYER")?.GetComponent<Player>();
+            
+            // var playerObj = GameObject.FindGameObjectWithTag("PLAYER");
+            // playerObj.TryGetComponent(out _player);
         }
 
         private void OnEnable()
@@ -147,7 +160,8 @@ namespace DungeonMaster.InventorySystem
 
         private void UseConsumableItem(ConsumableItemDataSO item)
         {
-            // TODO: 플레이어 힐 처리
+            // 플레이어 힐 처리
+            _player.Heal(item.hpRecovery);
             RemoveItem(_selectedSlotIndex);
         }
         #endregion

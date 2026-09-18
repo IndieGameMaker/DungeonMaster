@@ -105,6 +105,16 @@ namespace DungeonMaster.Character.Player
                 _weaponArm.localRotation = Quaternion.Euler(0f, 180f, 0f);
             }
         }
+
+        public void Heal(float amount)
+        {
+            if (_isDead) return;
+            _currHp += amount;
+            _currHp = Mathf.Min(_maxHp, _currHp);
+            
+            // HP 갱신
+            _hpBar.fillAmount = _currHp / _maxHp;
+        }
         #endregion
         
         #region 입력 처리 메서드
