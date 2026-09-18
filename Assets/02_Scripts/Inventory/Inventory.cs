@@ -128,10 +128,27 @@ namespace DungeonMaster.InventorySystem
             }
         }
         
-        // 아이템 사용 및 장착
+        // 소모성 아이템 사용
         private void UseItem(int index)
         {
-            
+            var item = _items[index];
+
+            if (item.ItemType != ItemType.Consumable)
+            {
+                Debug.Log("소모성 아이템이 아닙니다.");
+                return;
+            }
+
+            UseConsumableItem(item as ConsumableItemDataSO);
+        }
+        #endregion
+
+        #region 아이템 사용 및 장착
+
+        private void UseConsumableItem(ConsumableItemDataSO item)
+        {
+            // TODO: 플레이어 힐 처리
+            RemoveItem(_selectedSlotIndex);
         }
         #endregion
     }
