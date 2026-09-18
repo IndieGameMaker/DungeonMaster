@@ -215,8 +215,8 @@ namespace DungeonMaster.InventorySystem
                 }
             }
             
-            // TODO: 장비 장착
-            // _player.EquipWeapon(item);
+            // 장비 장착
+            _player.EquipWeapon(item);
             
             // 새로 장삭할 아이템의 슬롯에 장착 표시
             item.isEquip = true;
