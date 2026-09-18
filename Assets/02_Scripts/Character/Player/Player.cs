@@ -20,8 +20,19 @@ namespace DungeonMaster.Character.Player
         [SerializeField] protected float _moveSpeed = 5f;
         [SerializeField] protected float _attackDamage = 20f;
         [SerializeField] protected float _attackCooldown = 0.5f;
+        [SerializeField] protected float _defense = 0f;
 
         protected bool _isDead => _currHp <= 0f;
+
+        [Header("Weapon Sprite")]
+        [SerializeField] protected SpriteRenderer _weaponSprite;
+        
+        // 기본 스텟 백업
+        private float baseAttackDamage;
+        private float baseDefense;
+        
+        // 현재 장착된 무기
+        private EquipmentItemDataSO _currentWeapon;
         #endregion
 
         #region 프로퍼티
@@ -30,6 +41,7 @@ namespace DungeonMaster.Character.Player
         public float MoveSpeed => _moveSpeed;
         public float AttackDamage => _attackDamage;
         public float AttackCooldown => _attackCooldown;
+        public float Defense => _defense;
         #endregion
 
         #region 컴포넌트 캐싱
@@ -57,6 +69,10 @@ namespace DungeonMaster.Character.Player
         {
             // 초기 체력 설정
             _currHp = _maxHp;
+            // 기본 스텟 설정
+            baseAttackDamage = _attackDamage;
+            baseDefense = _defense;
+            
             // 컴포넌트 캐싱
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
@@ -115,6 +131,28 @@ namespace DungeonMaster.Character.Player
             // HP 갱신
             _hpBar.fillAmount = _currHp / _maxHp;
         }
+        
+        public virtual void TakeDamage(float damage)
+        {
+            if (_isDead) return;
+            _currHp -= damage;
+            
+            // HPBar 갱신
+            _hpBar.fillAmount = _currHp / _maxHp;
+            
+            _animator.SetTrigger(hashHit);
+
+            if (_currHp <= 0f)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
+        {
+            _currHp = 0;
+            Debug.Log("주인공이 사망했습니다.");
+        }        
         #endregion
         
         #region 입력 처리 메서드
@@ -168,26 +206,26 @@ namespace DungeonMaster.Character.Player
         protected abstract void Attack();
         #endregion
 
-        public virtual void TakeDamage(float damage)
-        {
-            if (_isDead) return;
-            _currHp -= damage;
-            
-            // HPBar 갱신
-            _hpBar.fillAmount = _currHp / _maxHp;
-            
-            _animator.SetTrigger(hashHit);
+        #region 무기 교체
 
-            if (_currHp <= 0f)
-            {
-                Die();
-            }
-        }
-
-        protected virtual void Die()
+        
+        // 무기 교체 메서드
+        public void EquipWeapon(EquipmentItemDataSO newWeapon)
         {
-            _currHp = 0;
-            Debug.Log("주인공이 사망했습니다.");
+            // 무기 스프라이트 교체
+            _weaponSprite.sprite = newWeapon.itemIcon;
+            
+            // 기본 + 무기의 보너스 능력치 합산
+            _attackDamage = baseAttackDamage + newWeapon.attackDamage;
+            _attackCooldown = newWeapon.attackSpeed;
+            _defense = baseDefense + newWeapon.defense;
+
+            _currentWeapon = newWeapon;
+            
+            Debug.Log($"새 무기 장착 : {newWeapon.itemName}");
         }
+        // 무기 해제 메서드
+
+        #endregion
     }
 }
