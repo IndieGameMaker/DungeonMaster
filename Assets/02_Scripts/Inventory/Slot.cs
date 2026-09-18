@@ -10,7 +10,7 @@ namespace DungeonMaster.InventorySystem
     {
         private ItemData _itemData;
 
-        public ItemData itemData
+        public ItemData ItemData
         {
             get => _itemData;
             set => UpdateItem(value);

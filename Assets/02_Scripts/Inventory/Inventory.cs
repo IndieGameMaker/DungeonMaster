@@ -46,6 +46,16 @@ namespace DungeonMaster.InventorySystem
             {
                 ItemData hpPotion = Resources.Load<ItemData>("ItemData/HpPotionLarge");
                 AddItem(hpPotion);
+                
+                // 기본 장착 무기 (Addressable 변환)
+                ItemData sword = Resources.Load<ItemData>("ItemData/RustySword");
+                AddItem(sword);
+                
+                sword = Resources.Load<ItemData>("ItemData/IronSword");
+                AddItem(sword);
+                
+                sword = Resources.Load<ItemData>("ItemData/LegendSword");
+                AddItem(sword);
             }
         }
         #endregion
@@ -84,7 +94,7 @@ namespace DungeonMaster.InventorySystem
         {
             for (int i = 0; i < _slots.Count; i++)
             {
-                if (_slots[i].itemData == null) return i;
+                if (_slots[i].ItemData == null) return i;
             }
 
             return -1;
@@ -103,7 +113,7 @@ namespace DungeonMaster.InventorySystem
             
             // 실제로 아이템 추가
             _items[emptySlot] = item;
-            _slots[emptySlot].itemData = item;
+            _slots[emptySlot].ItemData = item;
             Debug.Log($"{item.itemName} 아이템이 인벤토리에 추가되었습니다.");
             return true;
         }
