@@ -166,6 +166,22 @@ namespace DungeonMaster.InventorySystem
 
             UseConsumableItem(item as ConsumableItemDataSO);
         }
+        
+        // 장착 아이템 사용
+        private void EquipItem(int index)
+        {
+            var item = _items[index];
+
+            if (item.ItemType != ItemType.Equipment)
+            {
+                Debug.Log("장착 아이템이 아닙니다.");
+                return;
+            }
+            
+            EquipSelectedItem(item as EquipmentItemDataSO);
+        }
+
+
         #endregion
 
         #region 아이템 사용 및 장착
@@ -175,6 +191,28 @@ namespace DungeonMaster.InventorySystem
             // 플레이어 힐 처리
             _player.Heal(item.hpRecovery);
             RemoveItem(_selectedSlotIndex);
+        }
+        
+        private void EquipSelectedItem(EquipmentItemDataSO item)
+        {
+            // 현재 장착된 무기 해제
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (_items[i] is EquipmentItemDataSO equippedItem && equippedItem.isEquip)
+                {
+                    // 장착 해제
+                    equippedItem.isEquip = false;
+                    _slots[i].ItemData = equippedItem;
+                    break;
+                }
+            }
+            
+            // TODO: 장비 장착
+            // _player.EquipWeapon(item);
+            
+            // 새로 장삭할 아이템의 슬롯에 장착 표시
+            item.isEquip = true;
+            _slots[_selectedSlotIndex].ItemData = item;
         }
         #endregion
     }
