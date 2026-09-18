@@ -53,6 +53,14 @@ namespace DungeonMaster.InventorySystem
                     UseItem(_selectedSlotIndex);
                 }
             }
+
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+                {
+                    EquipItem(_selectedSlotIndex);
+                }                
+            }
         }
         
         private void OnEnable()
