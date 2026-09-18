@@ -118,6 +118,21 @@ namespace DungeonMaster.InventorySystem
             return true;
         }
 
+        // 아이템 제거
+        private void RemoveItem(int index)
+        {
+            if (_items[index] != null)
+            {
+                _items[index] = null;
+                _slots[index].ItemData = null;
+            }
+        }
+        
+        // 아이템 사용 및 장착
+        private void UseItem(int index)
+        {
+            
+        }
         #endregion
     }
 }
