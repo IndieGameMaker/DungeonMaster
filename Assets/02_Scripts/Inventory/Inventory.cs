@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DungeonMaster.Character.Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DungeonMaster.InventorySystem
 {
@@ -43,6 +44,17 @@ namespace DungeonMaster.InventorySystem
             // playerObj.TryGetComponent(out _player);
         }
 
+        private void Update()
+        {
+            if (Keyboard.current.uKey.wasPressedThisFrame)
+            {
+                if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+                {
+                    UseItem(_selectedSlotIndex);
+                }
+            }
+        }
+        
         private void OnEnable()
         {
             Slot.OnSlotSelected += SlotSelected;
