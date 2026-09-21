@@ -15,4 +15,7 @@ public abstract class ItemData : ScriptableObject
     public bool isEquip;
     [TextArea(3,10)]
     public string description;
+    
+    // 추상 메서드 선언
+    public abstract string GetItemInfo();
 }
