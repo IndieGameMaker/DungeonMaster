@@ -80,26 +80,26 @@ namespace DungeonMaster.InventorySystem
 
         private void OnDisable()
         {
-            // Slot.OnSlotSelected -= SlotSelected;
+            Slot.OnSlotSelected -= SlotSelected;
         }
 
         private void OnGUI()
         {
-            if (GUILayout.Button("아이템 초기 지급"))
-            {
-                ItemData hpPotion = Resources.Load<ItemData>("ItemData/HpPotionLarge");
-                AddItem(hpPotion);
-                
-                // 기본 장착 무기 (Addressable 변환)
-                ItemData sword = Resources.Load<ItemData>("ItemData/RustySword");
-                AddItem(sword);
-                
-                sword = Resources.Load<ItemData>("ItemData/IronSword");
-                AddItem(sword);
-                
-                sword = Resources.Load<ItemData>("ItemData/LegendSword");
-                AddItem(sword);
-            }
+            // if (GUILayout.Button("아이템 초기 지급"))
+            // {
+            //     ItemData hpPotion = Resources.Load<ItemData>("ItemData/HpPotionLarge");
+            //     AddItem(hpPotion);
+            //     
+            //     // 기본 장착 무기 (Addressable 변환)
+            //     ItemData sword = Resources.Load<ItemData>("ItemData/RustySword");
+            //     AddItem(sword);
+            //     
+            //     sword = Resources.Load<ItemData>("ItemData/IronSword");
+            //     AddItem(sword);
+            //     
+            //     sword = Resources.Load<ItemData>("ItemData/LegendSword");
+            //     AddItem(sword);
+            // }
         }
         #endregion
 
@@ -144,7 +144,7 @@ namespace DungeonMaster.InventorySystem
             foreach (var slot in _slots)
             {
                 if (slot == null) continue;
-
+                
                 slot.isSelected = false;
                 slot.selectedMarkImage.enabled = false;
             }

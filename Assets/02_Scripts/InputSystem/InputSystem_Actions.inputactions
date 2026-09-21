@@ -1010,6 +1010,77 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Inventory",
+            "id": "7c63c668-c6e8-4fc9-8a48-6eadda29e031",
+            "actions": [
+                {
+                    "name": "Open",
+                    "type": "Button",
+                    "id": "2cfdd318-0cc9-4899-a236-4e706936fe8c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "UseItem",
+                    "type": "Button",
+                    "id": "33ee77db-6403-4b3f-9d04-d7a71d5e8135",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "EquipItem",
+                    "type": "Button",
+                    "id": "0498ebf4-e9bb-48b7-b38e-0fab935659aa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "77968a1b-f622-40e2-b21d-b44eca09199d",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d6dcdb2-1576-4ed9-801f-07482b748b88",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d42f6c5-d4e0-4d3a-9098-42c57dfef835",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
