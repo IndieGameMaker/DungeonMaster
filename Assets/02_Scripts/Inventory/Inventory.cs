@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-
 namespace DungeonMaster.InventorySystem
 {
     public class Inventory : MonoBehaviour
@@ -15,6 +14,8 @@ namespace DungeonMaster.InventorySystem
         [SerializeField] private TextMeshProUGUI _itemNameText;
         [SerializeField] private TextMeshProUGUI _itemDescriptionText;
         [SerializeField] private TextMeshProUGUI _itemStateText;
+        
+        public CanvasGroup canvasGroup;
         
         // 슬롯
         [SerializeField] private List<Slot> _slots;
