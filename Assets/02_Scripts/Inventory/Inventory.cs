@@ -1,13 +1,21 @@
 using System;
 using System.Collections.Generic;
 using DungeonMaster.Character.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 
 namespace DungeonMaster.InventorySystem
 {
     public class Inventory : MonoBehaviour
     {
+        [SerializeField] private Image _itemImage;
+        [SerializeField] private TextMeshProUGUI _itemNameText;
+        [SerializeField] private TextMeshProUGUI _itemDescriptionText;
+        [SerializeField] private TextMeshProUGUI _itemStateText;
+        
         // 슬롯
         [SerializeField] private List<Slot> _slots;
         
