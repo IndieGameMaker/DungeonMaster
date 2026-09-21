@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DungeonMaster.Core;
 using UnityEngine;
 using DungeonMaster.InventorySystem;
@@ -29,6 +30,15 @@ namespace DungeonMaster.Character.Player
             
             Debug.Log($"전사의 방어력: {_warriorSO.defense}");
             base.Awake();
+        }
+
+        private IEnumerator Start()
+        {
+            // 인벤토리의 Start Call 된 후 한 프레임 건너뜀 
+            yield return null;
+            
+            var inventory = FindAnyObjectByType<Inventory>();
+            SetInitializeItems(inventory);
         }
 
         #endregion

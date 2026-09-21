@@ -80,7 +80,7 @@ namespace DungeonMaster.InventorySystem
 
         private void OnDisable()
         {
-            Slot.OnSlotSelected -= SlotSelected;
+            // Slot.OnSlotSelected -= SlotSelected;
         }
 
         private void OnGUI()
