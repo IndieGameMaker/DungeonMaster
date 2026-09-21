@@ -115,8 +115,28 @@ namespace DungeonMaster.InventorySystem
             slot.selectedMarkImage.enabled = true;
             
             _selectedSlotIndex = slot.slotIndex;
+            // 선택한 아이템 정보 표시
+            UpdateSelectedItemInfo();
             
             Debug.Log($"{slot.name} is selected");
+        }
+
+        // 선택한 아이템의 정보 표시
+        private void UpdateSelectedItemInfo()
+        {
+            if (_selectedSlotIndex == -1) return;
+            
+            var item = _items[_selectedSlotIndex];
+
+            if (item != null)
+            {
+                _itemImage.sprite = item.itemIcon;
+                _itemNameText.text = item.itemName;
+                _itemDescriptionText.text = item.description;
+                
+                // 스텟 출력
+                //_itemStateText.text = item.GetItemInfo();
+            }
         }
 
         private void ClearAllSelectedSlots()
