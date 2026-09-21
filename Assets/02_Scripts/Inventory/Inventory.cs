@@ -135,7 +135,7 @@ namespace DungeonMaster.InventorySystem
                 _itemDescriptionText.text = item.description;
                 
                 // 스텟 출력
-                //_itemStateText.text = item.GetItemInfo();
+                _itemStateText.text = item.GetItemInfo();
             }
         }
 

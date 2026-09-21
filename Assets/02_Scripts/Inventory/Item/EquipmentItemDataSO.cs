@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 public enum EquipType
@@ -17,4 +18,14 @@ public class EquipmentItemDataSO : ItemData
     public float defense;
     // 공격 속도
     public float attackSpeed;
+    
+    public override string GetItemInfo()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"ATK: {attackDamage}\n");
+        sb.Append($"DEF: {defense}\n");
+        sb.Append($"SPD: {attackSpeed}\n");
+        
+        return sb.ToString();        
+    }
 }
