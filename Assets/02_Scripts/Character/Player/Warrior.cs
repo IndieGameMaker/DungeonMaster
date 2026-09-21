@@ -56,7 +56,7 @@ namespace DungeonMaster.Character.Player
             
             foreach (var collider in colliders)
             {
-                collider.GetComponent<IDamageable>()?.TakeDamage(_warriorSO.attackDamage);
+                collider.GetComponent<IDamageable>()?.TakeDamage(_attackDamage);
 
                 // if (collider.TryGetComponent<IDamageable>(out IDamageable other))
                 // {
@@ -68,7 +68,7 @@ namespace DungeonMaster.Character.Player
         public override void TakeDamage(float damage)
         {
             // 방어력 적용
-            float actualDamage = Mathf.Max(damage - _warriorSO.defense, 5f);
+            float actualDamage = Mathf.Max(damage - _defense, 5f);
             
             base.TakeDamage(actualDamage);
             Debug.Log($"Warrior가 {actualDamage}의 피해를 입었습니다. HP : {_currHp}/{_maxHp}");
