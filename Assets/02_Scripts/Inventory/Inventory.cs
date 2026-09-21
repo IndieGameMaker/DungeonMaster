@@ -164,7 +164,7 @@ namespace DungeonMaster.InventorySystem
         }
         
         // 아이템 추가
-        private bool AddItem(ItemData item)
+        public bool AddItem(ItemData item)
         {
             // 빈 슬롯 검색
             int emptySlot = FindEmptySlot();

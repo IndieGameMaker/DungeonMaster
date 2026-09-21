@@ -1,6 +1,7 @@
 using System;
 using DungeonMaster.Core;
 using UnityEngine;
+using DungeonMaster.InventorySystem;
 
 namespace DungeonMaster.Character.Player
 {
@@ -32,6 +33,36 @@ namespace DungeonMaster.Character.Player
 
         #endregion
 
+        #region 초기 아이템 지급
+
+        private void SetInitializeItems(Inventory inventory)
+        {
+            // 기본 무기 (Rusty Sword)
+            ItemData defaultWeapon = Resources.Load<ItemData>("ItemData/RustySword");
+            if (defaultWeapon != null)
+            {
+                defaultWeapon.isEquip = true;
+                if (inventory.AddItem(defaultWeapon))
+                {
+                    EquipWeapon(defaultWeapon as EquipmentItemDataSO);
+                    Debug.Log("기본 무기 장착됨");
+                }
+            }
+            else
+            {
+                Debug.Log("기본 장착 무기 데이터가 없습니다.");
+            }
+            
+            // 추가 무기 (Iron Sword)
+            ItemData ironSword = Resources.Load<ItemData>("ItemData/IronSword");
+            inventory.AddItem(ironSword);
+            // 생명 포션
+            var hpPotion = Resources.Load<ItemData>("ItemData/HpPotionLarge");
+            inventory.AddItem(hpPotion);
+        }
+
+        #endregion
+        
         #region 공격 및 데미지 처리
         
         protected override void Attack()
