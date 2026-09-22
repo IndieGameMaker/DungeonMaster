@@ -29,6 +29,13 @@ namespace DungeonMaster.InventorySystem
         // Player 참조
         private Player _player;
         
+        // 인벤토리 전용 InputAction
+        private InputSystem_Actions _inputActions;
+        // InputAction
+        private InputAction _openInventoryAction;
+        private InputAction _useItemAction;
+        private InputAction _equipItemAction;
+        
         #region 유니티 생명주기
 
         private void Awake()
@@ -44,6 +51,13 @@ namespace DungeonMaster.InventorySystem
             // 첫 번째 슬롯을 기본 선택
             _slots[0].isDefaultSelected = true;
             _selectedSlotIndex = 0;
+            
+            // InputAction 설정
+            _inputActions = new InputSystem_Actions();
+
+            _openInventoryAction = _inputActions.Inventory.Open;
+            _useItemAction = _inputActions.Inventory.UseItem;
+            _equipItemAction = _inputActions.Inventory.EquipItem;
         }
 
         private void Start()
@@ -52,6 +66,14 @@ namespace DungeonMaster.InventorySystem
             
             // var playerObj = GameObject.FindGameObjectWithTag("PLAYER");
             // playerObj.TryGetComponent(out _player);
+        }
+        
+        // 인벤토리 UI 활성화/비활성화 처리
+        private void SetInventoryUIActive(bool isActive)
+        {
+            canvasGroup.alpha = isActive ? 1 : 0;
+            canvasGroup.interactable = isActive;
+            canvasGroup.blocksRaycasts = isActive;
         }
 
         private void Update()
@@ -75,11 +97,13 @@ namespace DungeonMaster.InventorySystem
         
         private void OnEnable()
         {
+            _inputActions.Enable();
             Slot.OnSlotSelected += SlotSelected;
         }
 
         private void OnDisable()
         {
+            _inputActions.Disable();
             Slot.OnSlotSelected -= SlotSelected;
         }
 
