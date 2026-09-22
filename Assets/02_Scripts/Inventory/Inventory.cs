@@ -83,6 +83,15 @@ namespace DungeonMaster.InventorySystem
             Slot.OnSlotSelected -= SlotSelected;
         }
 
+        private void OnApplicationQuit()
+        {
+            var itemDatas = Resources.LoadAll<ItemData>("ItemData");
+            foreach (var item in itemDatas)
+            {
+                item.isEquip = false;
+            }
+        }
+
         private void OnGUI()
         {
             // if (GUILayout.Button("아이템 초기 지급"))
@@ -241,7 +250,7 @@ namespace DungeonMaster.InventorySystem
                     // 장착 해제
                     equippedItem.isEquip = false;
                     _slots[i].ItemData = equippedItem;
-                    break;
+                    //break;
                 }
             }
             
