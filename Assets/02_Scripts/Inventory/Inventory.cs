@@ -63,46 +63,47 @@ namespace DungeonMaster.InventorySystem
         private void Start()
         {
             _player = GameObject.FindGameObjectWithTag("PLAYER")?.GetComponent<Player>();
-            
-            // var playerObj = GameObject.FindGameObjectWithTag("PLAYER");
-            // playerObj.TryGetComponent(out _player);
+
+            SetInventoryUIActive(false);
         }
         
-        // 인벤토리 UI 활성화/비활성화 처리
-        private void SetInventoryUIActive(bool isActive)
-        {
-            canvasGroup.alpha = isActive ? 1 : 0;
-            canvasGroup.interactable = isActive;
-            canvasGroup.blocksRaycasts = isActive;
-        }
-
         private void Update()
         {
-            if (Keyboard.current.uKey.wasPressedThisFrame)
-            {
-                if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
-                {
-                    UseItem(_selectedSlotIndex);
-                }
-            }
-
-            if (Keyboard.current.eKey.wasPressedThisFrame)
-            {
-                if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
-                {
-                    EquipItem(_selectedSlotIndex);
-                }                
-            }
+            // if (Keyboard.current.uKey.wasPressedThisFrame)
+            // {
+            //     if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+            //     {
+            //         UseItem(_selectedSlotIndex);
+            //     }
+            // }
+            //
+            // if (Keyboard.current.eKey.wasPressedThisFrame)
+            // {
+            //     if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+            //     {
+            //         EquipItem(_selectedSlotIndex);
+            //     }                
+            // }
         }
         
         private void OnEnable()
         {
+            _openInventoryAction.performed += OnToggleInventory;
+            _useItemAction.performed += OnUseItemCallback;
+            _equipItemAction.performed += OnEquipItemCallback;
+            
             _inputActions.Enable();
             Slot.OnSlotSelected += SlotSelected;
         }
 
+
+
         private void OnDisable()
         {
+            _openInventoryAction.performed -= OnToggleInventory;
+            _useItemAction.performed -= OnUseItemCallback;
+            _equipItemAction.performed -= OnEquipItemCallback;
+            
             _inputActions.Disable();
             Slot.OnSlotSelected -= SlotSelected;
         }
@@ -285,6 +286,37 @@ namespace DungeonMaster.InventorySystem
             item.isEquip = true;
             _slots[_selectedSlotIndex].ItemData = item;
         }
+        #endregion
+
+        #region 인벤토리 키 바인딩 및 활성화 처리
+        // 인벤토리 UI 활성화/비활성화 처리
+        private void SetInventoryUIActive(bool isActive)
+        {
+            canvasGroup.alpha = isActive ? 1 : 0;
+            canvasGroup.interactable = isActive;
+            canvasGroup.blocksRaycasts = isActive;
+        }
+        
+        private void OnToggleInventory(InputAction.CallbackContext obj)
+        {
+            SetInventoryUIActive(!canvasGroup.interactable);
+        }       
+        
+        private void OnEquipItemCallback(InputAction.CallbackContext obj)
+        {
+            if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+            {
+                EquipItem(_selectedSlotIndex);
+            }             
+        }
+
+        private void OnUseItemCallback(InputAction.CallbackContext obj)
+        {
+            if (_selectedSlotIndex != -1 && _items[_selectedSlotIndex] != null)
+            {
+                UseItem(_selectedSlotIndex);
+            }            
+        }        
         #endregion
     }
 }
